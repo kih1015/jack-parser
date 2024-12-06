@@ -1,0 +1,11 @@
+<tokens>
+<keyword> if </keyword>
+<keyword> while </keyword>
+<keyword> let </keyword>
+<keyword> return </keyword>
+<keyword> class </keyword>
+<keyword> method </keyword>
+<keyword> int </keyword>
+<keyword> boolean </keyword>
+<keyword> void </keyword>
+</tokens>

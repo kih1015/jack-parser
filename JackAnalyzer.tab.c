@@ -597,8 +597,8 @@ static const yytype_int16 yyrline[] =
      268,   271,   274,   277,   283,   291,   305,   315,   332,   345,
      354,   359,   368,   372,   379,   383,   391,   395,   399,   403,
      407,   414,   418,   424,   432,   439,   448,   460,   463,   467,
-     475,   479,   483,   487,   491,   495,   499,   503,   507,   514,
-     518,   525,   528,   531,   534
+     475,   478,   481,   484,   487,   490,   493,   496,   499,   505,
+     508,   514,   517,   520,   523
 };
 #endif
 
@@ -1950,136 +1950,125 @@ yyreduce:
   case 70: /* op: PLUS  */
 #line 475 "JackAnalyzer.y"
          {
-        (yyval.node) = create_node("op", NULL);
-        add_child((yyval.node), create_node("symbol", "+"));
+        (yyval.node) = create_node("symbol", "+");       
     }
-#line 1957 "JackAnalyzer.tab.c"
+#line 1956 "JackAnalyzer.tab.c"
     break;
 
   case 71: /* op: MINUS  */
-#line 479 "JackAnalyzer.y"
+#line 478 "JackAnalyzer.y"
             {
-        (yyval.node) = create_node("op", NULL);
-        add_child((yyval.node), create_node("symbol", "-"));
+        (yyval.node) = create_node("symbol", "-"); 
     }
-#line 1966 "JackAnalyzer.tab.c"
+#line 1964 "JackAnalyzer.tab.c"
     break;
 
   case 72: /* op: MULTIPLY  */
-#line 483 "JackAnalyzer.y"
+#line 481 "JackAnalyzer.y"
                {
-        (yyval.node) = create_node("op", NULL);
-        add_child((yyval.node), create_node("symbol", "*"));
+        (yyval.node) = create_node("symbol", "*");    
     }
-#line 1975 "JackAnalyzer.tab.c"
+#line 1972 "JackAnalyzer.tab.c"
     break;
 
   case 73: /* op: DIVIDE  */
-#line 487 "JackAnalyzer.y"
+#line 484 "JackAnalyzer.y"
              {
-        (yyval.node) = create_node("op", NULL);
-        add_child((yyval.node), create_node("symbol", "/"));
+        (yyval.node) = create_node("symbol", "/");
     }
-#line 1984 "JackAnalyzer.tab.c"
+#line 1980 "JackAnalyzer.tab.c"
     break;
 
   case 74: /* op: AND  */
-#line 491 "JackAnalyzer.y"
+#line 487 "JackAnalyzer.y"
           {
-        (yyval.node) = create_node("op", NULL);
-        add_child((yyval.node), create_node("symbol", "&"));
+        (yyval.node) = create_node("symbol", "&amp;");
     }
-#line 1993 "JackAnalyzer.tab.c"
+#line 1988 "JackAnalyzer.tab.c"
     break;
 
   case 75: /* op: OR  */
-#line 495 "JackAnalyzer.y"
+#line 490 "JackAnalyzer.y"
          {
-        (yyval.node) = create_node("op", NULL);
-        add_child((yyval.node), create_node("symbol", "|"));
+        (yyval.node) = create_node("symbol", "|");
     }
-#line 2002 "JackAnalyzer.tab.c"
+#line 1996 "JackAnalyzer.tab.c"
     break;
 
   case 76: /* op: LT  */
-#line 499 "JackAnalyzer.y"
+#line 493 "JackAnalyzer.y"
          {
-        (yyval.node) = create_node("op", NULL);
-        add_child((yyval.node), create_node("symbol", "<"));
+        (yyval.node) = create_node("symbol", "&lt;");
     }
-#line 2011 "JackAnalyzer.tab.c"
+#line 2004 "JackAnalyzer.tab.c"
     break;
 
   case 77: /* op: GT  */
-#line 503 "JackAnalyzer.y"
+#line 496 "JackAnalyzer.y"
          {
-        (yyval.node) = create_node("op", NULL);
-        add_child((yyval.node), create_node("symbol", ">"));
+        (yyval.node) = create_node("symbol", "&gt;");
+    }
+#line 2012 "JackAnalyzer.tab.c"
+    break;
+
+  case 78: /* op: EQ  */
+#line 499 "JackAnalyzer.y"
+         {
+        (yyval.node) = create_node("symbol", "=");
     }
 #line 2020 "JackAnalyzer.tab.c"
     break;
 
-  case 78: /* op: EQ  */
-#line 507 "JackAnalyzer.y"
-         {
-        (yyval.node) = create_node("op", NULL);
-        add_child((yyval.node), create_node("symbol", "="));
-    }
-#line 2029 "JackAnalyzer.tab.c"
-    break;
-
   case 79: /* unaryOp: MINUS  */
-#line 514 "JackAnalyzer.y"
+#line 505 "JackAnalyzer.y"
           {
-        (yyval.node) = create_node("unaryOp", NULL);
-        add_child((yyval.node), create_node("symbol", "-"));
+        (yyval.node) = create_node("symbol", "-");
     }
-#line 2038 "JackAnalyzer.tab.c"
+#line 2028 "JackAnalyzer.tab.c"
     break;
 
   case 80: /* unaryOp: NOT  */
-#line 518 "JackAnalyzer.y"
+#line 508 "JackAnalyzer.y"
           {
-        (yyval.node) = create_node("unaryOp", NULL);
-        add_child((yyval.node), create_node("symbol", "~"));
+        (yyval.node) = create_node("symbol", "~");
     }
-#line 2047 "JackAnalyzer.tab.c"
+#line 2036 "JackAnalyzer.tab.c"
     break;
 
   case 81: /* keywordConstant: TRUE  */
-#line 525 "JackAnalyzer.y"
+#line 514 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("keyword", "true");
     }
-#line 2055 "JackAnalyzer.tab.c"
+#line 2044 "JackAnalyzer.tab.c"
     break;
 
   case 82: /* keywordConstant: FALSE  */
-#line 528 "JackAnalyzer.y"
+#line 517 "JackAnalyzer.y"
             {
         (yyval.node) = create_node("keyword", "false");
     }
-#line 2063 "JackAnalyzer.tab.c"
+#line 2052 "JackAnalyzer.tab.c"
     break;
 
   case 83: /* keywordConstant: TK_NULL  */
-#line 531 "JackAnalyzer.y"
+#line 520 "JackAnalyzer.y"
               {
         (yyval.node) = create_node("keyword", "null");
     }
-#line 2071 "JackAnalyzer.tab.c"
+#line 2060 "JackAnalyzer.tab.c"
     break;
 
   case 84: /* keywordConstant: THIS  */
-#line 534 "JackAnalyzer.y"
+#line 523 "JackAnalyzer.y"
            {
         (yyval.node) = create_node("keyword", "this");
     }
-#line 2079 "JackAnalyzer.tab.c"
+#line 2068 "JackAnalyzer.tab.c"
     break;
 
 
-#line 2083 "JackAnalyzer.tab.c"
+#line 2072 "JackAnalyzer.tab.c"
 
       default: break;
     }
@@ -2272,7 +2261,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 539 "JackAnalyzer.y"
+#line 528 "JackAnalyzer.y"
 
 TreeNode* create_node(const char *tag, const char *value) {
     TreeNode *node = (TreeNode *)malloc(sizeof(TreeNode));

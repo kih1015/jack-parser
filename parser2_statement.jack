@@ -1,4 +1,4 @@
-
+// let 문
 let x = 3;
 let array[5] = 10;
 

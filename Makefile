@@ -4,7 +4,7 @@ FLEX = flex
 BISON = bison
 
 # 파일 이름
-FLEX_FILE = JackTokenizer.l
+FLEX_FILE = lexer.l
 BISON_FILE = JackAnalyzer.y
 OUTPUT = parser
 

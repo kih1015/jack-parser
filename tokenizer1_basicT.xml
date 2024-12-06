@@ -1,0 +1,15 @@
+<tokens>
+<identifier> x </identifier>
+<symbol> = </symbol>
+<identifier> y </identifier>
+<symbol> ; </symbol>
+<identifier> array </identifier>
+<symbol> [ </symbol>
+<integerConstant> 5 </integerConstant>
+<symbol> ] </symbol>
+<symbol> ; </symbol>
+<identifier> abc_123 </identifier>
+<symbol> = </symbol>
+<identifier> xyz </identifier>
+<symbol> ; </symbol>
+</tokens>

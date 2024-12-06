@@ -473,51 +473,40 @@ expressionList:
 
 op:
     PLUS {
-        $$ = create_node("op", NULL);
-        add_child($$, create_node("symbol", "+"));
+        $$ = create_node("symbol", "+");       
     }
     | MINUS {
-        $$ = create_node("op", NULL);
-        add_child($$, create_node("symbol", "-"));
+        $$ = create_node("symbol", "-"); 
     }
     | MULTIPLY {
-        $$ = create_node("op", NULL);
-        add_child($$, create_node("symbol", "*"));
+        $$ = create_node("symbol", "*");    
     }
     | DIVIDE {
-        $$ = create_node("op", NULL);
-        add_child($$, create_node("symbol", "/"));
+        $$ = create_node("symbol", "/");
     }
     | AND {
-        $$ = create_node("op", NULL);
-        add_child($$, create_node("symbol", "&"));
+        $$ = create_node("symbol", "&amp;");
     }
     | OR {
-        $$ = create_node("op", NULL);
-        add_child($$, create_node("symbol", "|"));
+        $$ = create_node("symbol", "|");
     }
     | LT {
-        $$ = create_node("op", NULL);
-        add_child($$, create_node("symbol", "<"));
+        $$ = create_node("symbol", "&lt;");
     }
     | GT {
-        $$ = create_node("op", NULL);
-        add_child($$, create_node("symbol", ">"));
+        $$ = create_node("symbol", "&gt;");
     }
     | EQ {
-        $$ = create_node("op", NULL);
-        add_child($$, create_node("symbol", "="));
+        $$ = create_node("symbol", "=");
     }
 ;
 
 unaryOp:
     MINUS {
-        $$ = create_node("unaryOp", NULL);
-        add_child($$, create_node("symbol", "-"));
+        $$ = create_node("symbol", "-");
     }
     | NOT {
-        $$ = create_node("unaryOp", NULL);
-        add_child($$, create_node("symbol", "~"));
+        $$ = create_node("symbol", "~");
     }
 ;
 

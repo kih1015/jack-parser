@@ -1,77 +1,92 @@
 %option noyywrap
 
 %{
-#include "JackAnalyzer.tab.h"
+//#include "JackAnalyzer.tab.h"
 #include <stdio.h>
 #include <stdlib.h>
 %}
 
 %%
 
-\/\*([^*]|\*+[^*/])*\*+\/    {}  // 블록 주석 무시
-"//".*                      {}  // 한 줄 주석 무시
-[ \t\n\r]+                  {}  // 공백, 탭, 줄바꿈 무시
+"class"         { printf("<keyword> class </keyword>\n");}
+"constructor"   { printf("<keyword> constructor </keyword>\n");}
+"function"      { printf("<keyword> function </keyword>\n");}
+"method"        { printf("<keyword> method </keyword>\n"); }
+"field"         { printf("<keyword> field </keyword>\n"); }
+"static"        { printf("<keyword> static </keyword>\n");  }
+"var"           { printf("<keyword> var </keyword>\n");}
+"int"           { printf("<keyword> int </keyword>\n");  }
+"char"          { printf("<keyword> char </keyword>\n");  }
+"boolean"       { printf("<keyword> boolean </keyword>\n");  }
+"void"          { printf("<keyword> void </keyword>\n");  }
+"true"          { printf("<keyword> true </keyword>\n"); }
+"false"         { printf("<keyword> false </keyword>\n");  }
+"null"          { printf("<keyword> null </keyword>\n"); }
+"this"          { printf("<keyword> this </keyword>\n");  }
+"let"           { printf("<keyword> let </keyword>\n");  }
+"do"            { printf("<keyword> do </keyword>\n"); }
+"if"            { printf("<keyword> if </keyword>\n");  }
+"else"          { printf("<keyword> else </keyword>\n");  }
+"while"         { printf("<keyword> while </keyword>\n");  }
+"return"        { printf("<keyword> return </keyword>\n"); }
 
-"class"          { yylval.sval = "class"; return CLASS; }
-"constructor"    { yylval.sval = "constructor"; return CONSTRUCTOR; }
-"function"       { yylval.sval = "function"; return FUNCTION; }
-"method"         { yylval.sval = "method"; return METHOD; }
-"field"          { yylval.sval = "field"; return FIELD; }
-"static"         { yylval.sval = "static"; return STATIC; }
-"var"            { yylval.sval = "var"; return VAR; }
-"int"            { yylval.sval = "int"; return INT; }
-"char"           { yylval.sval = "char"; return CHAR; }
-"boolean"        { yylval.sval = "boolean"; return BOOLEAN; }
-"void"           { yylval.sval = "void"; return VOID; }
-"true"           { yylval.sval = "true"; return TRUE; }
-"false"          { yylval.sval = "false"; return FALSE; }
-"null"           { yylval.sval = "null"; return TK_NULL; }
-"this"           { yylval.sval = "this"; return THIS; }
-"let"            { yylval.sval = "let"; return LET; }
-"do"             { yylval.sval = "do"; return DO; }
-"if"             { yylval.sval = "if"; return IF; }
-"else"           { yylval.sval = "else"; return ELSE; }
-"while"          { yylval.sval = "while"; return WHILE; }
-"return"         { yylval.sval = "return"; return RETURN; }
+"{"             { printf("<symbol> { </symbol>\n");  }
+"}"             { printf("<symbol> } </symbol>\n");  }
+"("             { printf("<symbol> ( </symbol>\n");  }
+")"             { printf("<symbol> ) </symbol>\n");  }
+"["             { printf("<symbol> [ </symbol>\n"); }
+"]"             { printf("<symbol> ] </symbol>\n");  }
+"."             { printf("<symbol> . </symbol>\n");  }
+","             { printf("<symbol> , </symbol>\n");  }
+";"             { printf("<symbol> ; </symbol>\n");  }
+"+"             { printf("<symbol> + </symbol>\n");  }
+"-"             { printf("<symbol> - </symbol>\n");  }
+"*"             { printf("<symbol> * </symbol>\n");  }
+"/"             { printf("<symbol> / </symbol>\n");  }
+"&"             { printf("<symbol> &amp; </symbol>\n");  }
+"|"             { printf("<symbol> | </symbol>\n");  }
+"<"             { printf("<symbol> &lt; </symbol>\n");  }
+">"             { printf("<symbol> &gt; </symbol>\n");  }
+"="             { printf("<symbol> = </symbol>\n");  }
+"~"             { printf("<symbol> ~ </symbol>\n");  }
 
-"{"              { yylval.sval = "{"; return LBRACE; }
-"}"              { yylval.sval = "}"; return RBRACE; }
-"("              { yylval.sval = "("; return LPAREN; }
-")"              { yylval.sval = ")"; return RPAREN; }
-"["              { yylval.sval = "["; return LBRACKET; }
-"]"              { yylval.sval = "]"; return RBRACKET; }
-"."              { yylval.sval = "."; return DOT; }
-","              { yylval.sval = ","; return COMMA; }
-";"              { yylval.sval = ";"; return SEMICOLON; }
-"+"              { yylval.sval = "+"; return PLUS; }
-"-"              { yylval.sval = "-"; return MINUS; }
-"*"              { yylval.sval = "*"; return MULTIPLY; }
-"/"              { yylval.sval = "/"; return DIVIDE; }
-"&"              { yylval.sval = "&"; return AND; }
-"|"              { yylval.sval = "|"; return OR; }
-"<"              { yylval.sval = "&lt"; return LT; }
-">"              { yylval.sval = "&gt"; return GT; }
-"="              { yylval.sval = "="; return EQ; }
-"~"              { yylval.sval = "~"; return NOT; }
-[0-9]+           { 
+[0-9]+          { 
                     int value = atoi(yytext);
                     if (value >= 0 && value <= 32767) {
-                        yylval.sval = strdup(yytext);
-                        return INTEGER_CONSTANT;
+                        printf("<integerConstant> %d </integerConstant>\n", value);
+                        //yylval.sval = strdup(yytext);
                     } else {
                         printf("Error: Integer out of range: %s\n", yytext);
-                        exit(1); // 에러 처리
+                        exit(1);
                     }
-                 }
+                }
 
-\"[^\"]*\"       { 
-                    yylval.sval = strdup(yytext);
-                    return STRING_CONSTANT; 
-                 }
+\"[^\"]*\"      { 
+                    char *buf = (char *)malloc(strlen(yytext) - 1); // 따옴표 제거
+                    strncpy(buf, yytext + 1, strlen(yytext) - 2);
+                    buf[strlen(yytext) - 2] = '\0';
+                    printf("<stringConstant> %s </stringConstant>\n", buf);
+                    //yylval.sval = buf;
+                }
 
-[_a-zA-Z][_a-zA-Z0-9]* {
-                    yylval.sval = strdup(yytext);
-                    return IDENTIFIER;
-                 }
+[_a-zA-Z][_a-zA-Z0-9]*  {
+                            printf("<identifier> %s </identifier>\n", yytext);
+                            //yylval.sval = strdup(yytext);
+                        }
+
+\/\*([^*]|\*+[^*/])*\*+\/     {}  // 주석 무시
+"//".*                        {}  // 주석 무시
+[ \t\n\r]+                    {}  // 공백 무시
+
+.               {
+                    printf("Error: Unrecognized token: %s\n", yytext);
+                    exit(1);
+                }
 
 %%    
+
+int main() {
+    printf("<tokens>\n");
+    yylex();
+    printf("</tokens>\n");
+}

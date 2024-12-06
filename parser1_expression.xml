@@ -1,0 +1,87 @@
+<expressions>
+  <expression>
+    <term>
+      <integerConstant> 3 </integerConstant>
+    </term>
+    <symbol> + </symbol>
+    <term>
+      <integerConstant> 4 </integerConstant>
+    </term>
+  </expression>
+  <expression>
+    <term>
+      <identifier> x </identifier>
+    </term>
+    <symbol> * </symbol>
+    <term>
+      <identifier> y </identifier>
+    </term>
+    <symbol> - </symbol>
+    <term>
+      <integerConstant> 5 </integerConstant>
+    </term>
+  </expression>
+  <expression>
+    <term>
+      <symbol> ( </symbol>
+      <expression>
+        <term>
+          <integerConstant> 2 </integerConstant>
+        </term>
+        <symbol> + </symbol>
+        <term>
+          <integerConstant> 3 </integerConstant>
+        </term>
+      </expression>
+      <symbol> ) </symbol>
+    </term>
+    <symbol> * </symbol>
+    <term>
+      <integerConstant> 4 </integerConstant>
+    </term>
+  </expression>
+  <expression>
+    <term>
+      <identifier> x </identifier>
+    </term>
+    <symbol> &gt; </symbol>
+    <term>
+      <identifier> y </identifier>
+    </term>
+  </expression>
+  <expression>
+    <term>
+      <identifier> a </identifier>
+    </term>
+    <symbol> &lt; </symbol>
+    <term>
+      <identifier> b </identifier>
+    </term>
+  </expression>
+  <expression>
+    <term>
+      <identifier> x </identifier>
+    </term>
+    <symbol> = </symbol>
+    <term>
+      <identifier> y </identifier>
+    </term>
+  </expression>
+  <expression>
+    <term>
+      <identifier> x </identifier>
+    </term>
+    <symbol> &amp; </symbol>
+    <term>
+      <identifier> y </identifier>
+    </term>
+  </expression>
+  <expression>
+    <term>
+      <symbol> ~ </symbol>
+      <term>
+        <identifier> b </identifier>
+      </term>
+    </term>
+  </expression>
+</expressions>
