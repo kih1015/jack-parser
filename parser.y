@@ -61,7 +61,7 @@ program:
 class:
     CLASS className LBRACE classVarDecList subroutineDecList RBRACE {
         $$ = create_node("class", NULL);
-        add_child($$, create_node("keword", "class"));
+        add_child($$, create_node("keyword", "class"));
         add_child($$, $2);
         add_child($$, create_node("symbol", "{"));
         take_children($$, $4);
@@ -114,13 +114,13 @@ classVarType:
 
 type:
     INT {
-        $$ = create_node("keword", "int");
+        $$ = create_node("keyword", "int");
     }
     | CHAR {
-        $$ = create_node("keword", "char");
+        $$ = create_node("keyword", "char");
     } 
     | BOOLEAN {
-        $$ = create_node("keword", "boolean");
+        $$ = create_node("keyword", "boolean");
     } 
     | className {
         $$ = $1;
@@ -156,7 +156,7 @@ subroutineType:
 /* middle node */
 returnType:
     VOID {
-        $$ = create_node("symbol", "void");
+        $$ = create_node("keyword", "void");
     }
     | type {
         $$ = $1;  // Pass the type node directly
@@ -329,7 +329,7 @@ ifStatement:
 whileStatement:
     WHILE LPAREN expression RPAREN LBRACE statements RBRACE {
         $$ = create_node("whileStatement", NULL);
-        add_child($$, create_node("keword", "while"));
+        add_child($$, create_node("keyword", "while"));
         add_child($$, create_node("symbol", "("));
         add_child($$, $3);
         add_child($$, create_node("symbol", ")"));
@@ -342,7 +342,7 @@ whileStatement:
 doStatement:
     DO subroutineCall SEMICOLON {
         $$ = create_node("doStatement", NULL);
-        add_child($$, create_node("keword", "do"));
+        add_child($$, create_node("keyword", "do"));
         take_children($$, $2);
         add_child($$, create_node("symbol", ";"));
     }
@@ -351,12 +351,12 @@ doStatement:
 returnStatement:
     RETURN SEMICOLON {
         $$ = create_node("returnStatement", NULL);
-        add_child($$, create_node("keword", "return"));
+        add_child($$, create_node("keyword", "return"));
         add_child($$, create_node("symbol", ";"));
     }
     | RETURN expression SEMICOLON {
         $$ = create_node("returnStatement", NULL);
-        add_child($$, create_node("keword", "return"));
+        add_child($$, create_node("keyword", "return"));
         add_child($$, $2);
         add_child($$, create_node("symbol", ";"));
     }
@@ -510,16 +510,16 @@ unaryOp:
 
 keywordConstant:
     TRUE {
-        $$ = create_node("keword", "true");
+        $$ = create_node("keyword", "true");
     }
     | FALSE {
-        $$ = create_node("keword", "false");
+        $$ = create_node("keyword", "false");
     }
     | TK_NULL {
-        $$ = create_node("keword", "null");
+        $$ = create_node("keyword", "null");
     }
     | THIS {
-        $$ = create_node("keword", "this");
+        $$ = create_node("keyword", "this");
     }
 ;
 
@@ -586,10 +586,6 @@ void yyerror(const char *s) {
 }
 
 int main(int argc, char **argv) {
-    if (yyparse() == 0) {
-        printf("Parsing complete!\n");
-    } else {
-        printf("Parsing failed!\n");
-    }
+    if (yyparse() != 0) printf("Parsing failed!\n");
     return 0;
 }

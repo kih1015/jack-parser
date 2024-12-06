@@ -1306,7 +1306,7 @@ yyreduce:
 #line 62 "parser.y"
                                                                     {
         (yyval.node) = create_node("class", NULL);
-        add_child((yyval.node), create_node("keword", "class"));
+        add_child((yyval.node), create_node("keyword", "class"));
         add_child((yyval.node), (yyvsp[-4].node));
         add_child((yyval.node), create_node("symbol", "{"));
         take_children((yyval.node), (yyvsp[-2].node));
@@ -1381,7 +1381,7 @@ yyreduce:
   case 13: /* type: INT  */
 #line 116 "parser.y"
         {
-        (yyval.node) = create_node("keword", "int");
+        (yyval.node) = create_node("keyword", "int");
     }
 #line 1387 "parser.tab.c"
     break;
@@ -1389,7 +1389,7 @@ yyreduce:
   case 14: /* type: CHAR  */
 #line 119 "parser.y"
            {
-        (yyval.node) = create_node("keword", "char");
+        (yyval.node) = create_node("keyword", "char");
     }
 #line 1395 "parser.tab.c"
     break;
@@ -1397,7 +1397,7 @@ yyreduce:
   case 15: /* type: BOOLEAN  */
 #line 122 "parser.y"
               {
-        (yyval.node) = create_node("keword", "boolean");
+        (yyval.node) = create_node("keyword", "boolean");
     }
 #line 1403 "parser.tab.c"
     break;
@@ -1452,7 +1452,7 @@ yyreduce:
   case 21: /* returnType: VOID  */
 #line 158 "parser.y"
          {
-        (yyval.node) = create_node("symbol", "void");
+        (yyval.node) = create_node("keyword", "void");
     }
 #line 1458 "parser.tab.c"
     break;
@@ -1709,7 +1709,7 @@ yyreduce:
 #line 330 "parser.y"
                                                             {
         (yyval.node) = create_node("whileStatement", NULL);
-        add_child((yyval.node), create_node("keword", "while"));
+        add_child((yyval.node), create_node("keyword", "while"));
         add_child((yyval.node), create_node("symbol", "("));
         add_child((yyval.node), (yyvsp[-4].node));
         add_child((yyval.node), create_node("symbol", ")"));
@@ -1724,7 +1724,7 @@ yyreduce:
 #line 343 "parser.y"
                                 {
         (yyval.node) = create_node("doStatement", NULL);
-        add_child((yyval.node), create_node("keword", "do"));
+        add_child((yyval.node), create_node("keyword", "do"));
         take_children((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
@@ -1735,7 +1735,7 @@ yyreduce:
 #line 352 "parser.y"
                      {
         (yyval.node) = create_node("returnStatement", NULL);
-        add_child((yyval.node), create_node("keword", "return"));
+        add_child((yyval.node), create_node("keyword", "return"));
         add_child((yyval.node), create_node("symbol", ";"));
     }
 #line 1742 "parser.tab.c"
@@ -1745,7 +1745,7 @@ yyreduce:
 #line 357 "parser.y"
                                   {
         (yyval.node) = create_node("returnStatement", NULL);
-        add_child((yyval.node), create_node("keword", "return"));
+        add_child((yyval.node), create_node("keyword", "return"));
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
@@ -2015,7 +2015,7 @@ yyreduce:
   case 78: /* keywordConstant: TRUE  */
 #line 512 "parser.y"
          {
-        (yyval.node) = create_node("keword", "true");
+        (yyval.node) = create_node("keyword", "true");
     }
 #line 2021 "parser.tab.c"
     break;
@@ -2023,7 +2023,7 @@ yyreduce:
   case 79: /* keywordConstant: FALSE  */
 #line 515 "parser.y"
             {
-        (yyval.node) = create_node("keword", "false");
+        (yyval.node) = create_node("keyword", "false");
     }
 #line 2029 "parser.tab.c"
     break;
@@ -2031,7 +2031,7 @@ yyreduce:
   case 80: /* keywordConstant: TK_NULL  */
 #line 518 "parser.y"
               {
-        (yyval.node) = create_node("keword", "null");
+        (yyval.node) = create_node("keyword", "null");
     }
 #line 2037 "parser.tab.c"
     break;
@@ -2039,7 +2039,7 @@ yyreduce:
   case 81: /* keywordConstant: THIS  */
 #line 521 "parser.y"
            {
-        (yyval.node) = create_node("keword", "this");
+        (yyval.node) = create_node("keyword", "this");
     }
 #line 2045 "parser.tab.c"
     break;
@@ -2302,10 +2302,6 @@ void yyerror(const char *s) {
 }
 
 int main(int argc, char **argv) {
-    if (yyparse() == 0) {
-        printf("Parsing complete!\n");
-    } else {
-        printf("Parsing failed!\n");
-    }
+    if (yyparse() != 0) printf("Parsing failed!\n");
     return 0;
 }
