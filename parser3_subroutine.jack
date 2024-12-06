@@ -1,0 +1,10 @@
+// 메소드 선언
+method void doSomething() {
+    let x = 1;
+    return;
+}
+
+// 함수 선언과 매개변수
+function int add(int a, int b) {
+    return a + b;
+}
