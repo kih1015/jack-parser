@@ -753,8 +753,7 @@ YY_DECL
 #line 9 "JackTokenizer.l"
 
 
-
-#line 758 "lex.yy.c"
+#line 757 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -814,253 +813,254 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 12 "JackTokenizer.l"
-{}
+#line 11 "JackTokenizer.l"
+{}  // 블록 주석 무시
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 13 "JackTokenizer.l"
-{}
+#line 12 "JackTokenizer.l"
+{}  // 한 줄 주석 무시
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 14 "JackTokenizer.l"
-{}
+#line 13 "JackTokenizer.l"
+{}  // 공백, 탭, 줄바꿈 무시
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 16 "JackTokenizer.l"
-{ return CLASS; }
+#line 15 "JackTokenizer.l"
+{ yylval.sval = "class"; return CLASS; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 17 "JackTokenizer.l"
-{ return CONSTRUCTOR; }
+#line 16 "JackTokenizer.l"
+{ yylval.sval = "constructor"; return CONSTRUCTOR; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 18 "JackTokenizer.l"
-{ return FUNCTION; }
+#line 17 "JackTokenizer.l"
+{ yylval.sval = "function"; return FUNCTION; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 19 "JackTokenizer.l"
-{ return METHOD; }
+#line 18 "JackTokenizer.l"
+{ yylval.sval = "method"; return METHOD; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 20 "JackTokenizer.l"
-{ return FIELD; }
+#line 19 "JackTokenizer.l"
+{ yylval.sval = "field"; return FIELD; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 21 "JackTokenizer.l"
-{ return STATIC; }
+#line 20 "JackTokenizer.l"
+{ yylval.sval = "static"; return STATIC; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 22 "JackTokenizer.l"
-{ return VAR; }
+#line 21 "JackTokenizer.l"
+{ yylval.sval = "var"; return VAR; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 23 "JackTokenizer.l"
-{ return INT; }
+#line 22 "JackTokenizer.l"
+{ yylval.sval = "int"; return INT; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 24 "JackTokenizer.l"
-{ return CHAR; }
+#line 23 "JackTokenizer.l"
+{ yylval.sval = "char"; return CHAR; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 25 "JackTokenizer.l"
-{ return BOOLEAN; }
+#line 24 "JackTokenizer.l"
+{ yylval.sval = "boolean"; return BOOLEAN; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 26 "JackTokenizer.l"
-{ return VOID; }
+#line 25 "JackTokenizer.l"
+{ yylval.sval = "void"; return VOID; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 27 "JackTokenizer.l"
-{ return TRUE; }
+#line 26 "JackTokenizer.l"
+{ yylval.sval = "true"; return TRUE; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 28 "JackTokenizer.l"
-{ return FALSE; }
+#line 27 "JackTokenizer.l"
+{ yylval.sval = "false"; return FALSE; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 29 "JackTokenizer.l"
-{ return TK_NULL; }
+#line 28 "JackTokenizer.l"
+{ yylval.sval = "null"; return TK_NULL; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 30 "JackTokenizer.l"
-{ return THIS; }
+#line 29 "JackTokenizer.l"
+{ yylval.sval = "this"; return THIS; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 31 "JackTokenizer.l"
-{ return LET; }
+#line 30 "JackTokenizer.l"
+{ yylval.sval = "let"; return LET; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 32 "JackTokenizer.l"
-{ return DO; }
+#line 31 "JackTokenizer.l"
+{ yylval.sval = "do"; return DO; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 33 "JackTokenizer.l"
-{ return IF; }
+#line 32 "JackTokenizer.l"
+{ yylval.sval = "if"; return IF; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 34 "JackTokenizer.l"
-{ return ELSE; }
+#line 33 "JackTokenizer.l"
+{ yylval.sval = "else"; return ELSE; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 35 "JackTokenizer.l"
-{ return WHILE; }
+#line 34 "JackTokenizer.l"
+{ yylval.sval = "while"; return WHILE; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 36 "JackTokenizer.l"
-{ return RETURN; }
+#line 35 "JackTokenizer.l"
+{ yylval.sval = "return"; return RETURN; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 38 "JackTokenizer.l"
-{ return LBRACE; }
+#line 37 "JackTokenizer.l"
+{ yylval.sval = "{"; return LBRACE; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 39 "JackTokenizer.l"
-{ return RBRACE; }
+#line 38 "JackTokenizer.l"
+{ yylval.sval = "}"; return RBRACE; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 40 "JackTokenizer.l"
-{ return LPAREN; }
+#line 39 "JackTokenizer.l"
+{ yylval.sval = "("; return LPAREN; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 41 "JackTokenizer.l"
-{ return RPAREN; }
+#line 40 "JackTokenizer.l"
+{ yylval.sval = ")"; return RPAREN; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 42 "JackTokenizer.l"
-{ return LBRACKET; }
+#line 41 "JackTokenizer.l"
+{ yylval.sval = "["; return LBRACKET; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 43 "JackTokenizer.l"
-{ return RBRACKET; }
+#line 42 "JackTokenizer.l"
+{ yylval.sval = "]"; return RBRACKET; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 44 "JackTokenizer.l"
-{ return DOT; }
+#line 43 "JackTokenizer.l"
+{ yylval.sval = "."; return DOT; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 45 "JackTokenizer.l"
-{ return COMMA; }
+#line 44 "JackTokenizer.l"
+{ yylval.sval = ","; return COMMA; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 46 "JackTokenizer.l"
-{ return SEMICOLON; }
+#line 45 "JackTokenizer.l"
+{ yylval.sval = ";"; return SEMICOLON; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 47 "JackTokenizer.l"
-{ return PLUS; }
+#line 46 "JackTokenizer.l"
+{ yylval.sval = "+"; return PLUS; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 48 "JackTokenizer.l"
-{ return MINUS; }
+#line 47 "JackTokenizer.l"
+{ yylval.sval = "-"; return MINUS; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 49 "JackTokenizer.l"
-{ return MULTIPLY; }
+#line 48 "JackTokenizer.l"
+{ yylval.sval = "*"; return MULTIPLY; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 50 "JackTokenizer.l"
-{ return DIVIDE; }
+#line 49 "JackTokenizer.l"
+{ yylval.sval = "/"; return DIVIDE; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 51 "JackTokenizer.l"
-{ return AND; }
+#line 50 "JackTokenizer.l"
+{ yylval.sval = "&"; return AND; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 52 "JackTokenizer.l"
-{ return OR; }
+#line 51 "JackTokenizer.l"
+{ yylval.sval = "|"; return OR; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 53 "JackTokenizer.l"
-{ return LT; }
+#line 52 "JackTokenizer.l"
+{ yylval.sval = "&lt"; return LT; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 54 "JackTokenizer.l"
-{ return GT; }
+#line 53 "JackTokenizer.l"
+{ yylval.sval = "&gt"; return GT; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 55 "JackTokenizer.l"
-{ return EQ; }
+#line 54 "JackTokenizer.l"
+{ yylval.sval = "="; return EQ; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 56 "JackTokenizer.l"
-{ return NOT; }
+#line 55 "JackTokenizer.l"
+{ yylval.sval = "~"; return NOT; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 58 "JackTokenizer.l"
+#line 56 "JackTokenizer.l"
 { 
                     int value = atoi(yytext);
                     if (value >= 0 && value <= 32767) {
                         yylval.sval = strdup(yytext);
-			return INTEGER_CONSTANT;
+                        return INTEGER_CONSTANT;
                     } else {
                         printf("Error: Integer out of range: %s\n", yytext);
+                        exit(1); // 에러 처리
                     }
                  }
 	YY_BREAK
 case 45:
 /* rule 45 can match eol */
 YY_RULE_SETUP
-#line 68 "JackTokenizer.l"
+#line 67 "JackTokenizer.l"
 { 
                     yylval.sval = strdup(yytext);
-		    return STRING_CONSTANT; 
+                    return STRING_CONSTANT; 
                  }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 73 "JackTokenizer.l"
+#line 72 "JackTokenizer.l"
 {
                     yylval.sval = strdup(yytext);
-		    return IDENTIFIER;
+                    return IDENTIFIER;
                  }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 81 "JackTokenizer.l"
+#line 77 "JackTokenizer.l"
 ECHO;
 	YY_BREAK
 #line 1067 "lex.yy.c"
@@ -2068,6 +2068,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 81 "JackTokenizer.l"
+#line 77 "JackTokenizer.l"
 
 
