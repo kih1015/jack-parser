@@ -67,7 +67,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "parser.y"
+#line 1 "JackAnalyzer.y"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -91,7 +91,7 @@ void yyerror(const char *s);
 int yylex();
 extern int yylineno;
 
-#line 95 "parser.tab.c"
+#line 95 "JackAnalyzer.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -114,7 +114,7 @@ extern int yylineno;
 #  endif
 # endif
 
-#include "parser.tab.h"
+#include "JackAnalyzer.tab.h"
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -525,9 +525,9 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  33
+#define YYFINAL  29
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   229
+#define YYLAST   231
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  46
@@ -637,7 +637,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-114)
+#define YYPACT_NINF (-87)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -651,22 +651,22 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-      11,   -31,  -114,  -114,  -114,  -114,  -114,  -114,  -114,    95,
-    -114,  -114,    87,  -114,  -114,    18,  -114,  -114,    -5,     4,
-      10,    -7,  -114,    28,    95,   188,  -114,  -114,    95,  -114,
-    -114,    33,    31,  -114,  -114,  -114,  -114,  -114,  -114,     9,
-    -114,     9,    95,    95,     9,    40,    49,    50,    60,    63,
-    -114,  -114,  -114,  -114,  -114,  -114,   188,  -114,  -114,  -114,
-    -114,  -114,  -114,  -114,  -114,  -114,    95,  -114,  -114,  -114,
-    -114,    74,    76,   188,    89,   136,    77,  -114,    -8,    84,
-      83,    95,    95,  -114,   159,  -114,    52,    20,    95,  -114,
-      95,  -114,    95,    95,    95,  -114,   108,   123,  -114,  -114,
-    -114,    36,  -114,    20,    40,    91,    96,   188,    97,   149,
-     169,   101,   102,  -114,  -114,    40,  -114,   107,    20,  -114,
-    -114,    92,  -114,  -114,  -114,    43,  -114,  -114,  -114,    40,
-      95,   109,   126,    40,  -114,   143,  -114,   179,   132,  -114,
-    -114,    40,  -114,   129,  -114,   131,    53,  -114,  -114,  -114,
-     141,  -114
+       7,   -42,   -87,   -87,   -87,   -87,    30,   -87,   -87,    31,
+     -87,   -87,    42,   -87,   137,   -15,    45,   -12,   -87,   202,
+      30,   178,   -87,   -87,    30,   -87,   -87,    41,    83,   -87,
+     -87,   -87,   -87,   -87,    15,    40,    30,    30,    40,    46,
+      55,    74,    85,    70,   -87,   -87,   -87,   -87,   -87,   -87,
+     178,   -87,   -87,   -87,   -87,   -87,   -87,   -87,   -87,   -87,
+      30,   -87,   -87,   -87,   -87,   -87,   -87,   -87,   -87,    40,
+     -87,   -87,   100,   178,    32,   126,   103,   -87,    -9,    79,
+     112,    30,    30,   -87,   149,   -87,     1,   104,    30,   -87,
+      30,   -87,    30,    30,    30,   -87,    98,   113,   -87,   -87,
+     -87,    63,   -87,    19,    19,    39,   178,    49,   139,   159,
+     121,   132,   -87,    46,    46,    76,   -87,   -87,   116,   -87,
+     -87,   -87,     8,   -87,   -87,   134,    19,    30,   144,   145,
+      46,   -87,   -87,   -87,    46,   169,   150,   -87,   -87,   214,
+     -87,   -87,   203,    46,   -87,   201,   -87,    60,   -87,   204,
+     -87,   -87
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -674,40 +674,40 @@ static const yytype_int16 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-      37,     0,    19,    20,    21,    81,    82,    83,    84,     0,
-      79,    80,    35,    57,    56,     0,     5,     4,     0,     0,
-       0,    59,     3,    36,     2,    52,    54,    61,     0,    58,
-      33,     0,     0,     1,    14,    15,    16,    22,    23,     0,
-      17,     0,    67,     0,     0,     0,     0,     0,     0,     0,
-      38,    39,    40,    41,    42,    43,    53,    70,    71,    72,
-      73,    74,    75,    76,    77,    78,     0,    63,     7,    62,
-      34,     0,     0,    68,     0,     0,     0,    35,     0,     0,
-       0,     0,     0,    50,     0,    55,     9,    24,    67,    64,
+      37,     0,    81,    82,    83,    84,     0,    79,    80,    35,
+      57,    56,     0,     5,     4,     0,     0,    59,     3,    36,
+       2,    52,    54,    61,     0,    58,    33,     0,     0,     1,
+      19,    20,    21,    10,     0,     0,    67,     0,     0,     0,
+       0,     0,     0,     0,    38,    39,    40,    41,    42,    43,
+      53,    70,    71,    72,    73,    74,    75,    76,    77,    78,
+       0,    63,     7,    62,    14,    15,    16,    22,    23,     0,
+      17,    34,     0,    68,     0,     0,     0,    35,     0,     0,
+       0,     0,     0,    50,     0,    55,     9,     0,    67,    64,
        0,    60,    67,     0,     0,    49,     0,     0,    51,    13,
-      12,     0,     8,     0,     0,     0,     0,    69,     0,     0,
-       0,     0,     0,     6,    10,     0,    25,     0,     0,    65,
-      66,     0,    44,    37,    37,     0,    31,    28,    18,     0,
-       0,     0,     0,     0,    11,    37,    26,     0,    46,    48,
-      32,     0,    29,     0,    45,     0,     0,    27,    37,    30,
-       0,    47
+      12,     0,     8,     0,    24,     0,    69,     0,     0,     0,
+       0,     0,     6,     0,     0,     0,    65,    66,     0,    44,
+      37,    37,     0,    31,    25,     0,     0,     0,     0,     0,
+       0,    11,    28,    18,     0,     0,    46,    48,    32,    37,
+      26,    45,     0,     0,    29,     0,    37,     0,    27,     0,
+      30,    47
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-    -114,  -114,  -114,  -114,  -114,  -114,  -114,   -74,    66,  -114,
-    -114,  -114,  -114,  -114,  -114,    27,     1,    57,   -42,  -113,
-    -114,  -114,  -114,  -114,  -114,  -114,  -114,  -114,     0,   -27,
-     133,    44,  -114,  -114,  -114
+     -87,   -87,   -87,   -87,   142,   -87,   -87,   -49,   -87,   -87,
+     -87,   -87,   -87,   -87,   -87,    87,     2,   -21,   -35,   -86,
+     -87,   -87,   -87,   -87,   -87,   -87,   -87,   -87,     0,   -22,
+     191,     9,   -87,   -87,   -87
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_uint8 yydefgoto[] =
 {
-       0,    15,    16,    86,   101,   102,   103,    38,    17,    18,
-      39,   105,   128,   135,   142,   125,    19,    20,    21,    22,
-      23,    50,    51,    52,    53,    54,    55,    24,    73,    26,
-      27,    74,    66,    28,    29
+       0,    12,    13,    86,    14,   102,   103,    68,    33,    34,
+      69,   115,   133,   139,   144,   122,    15,    16,    17,    18,
+      19,    44,    45,    46,    47,    48,    49,    20,    73,    22,
+      23,    74,    60,    24,    25
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -715,78 +715,80 @@ static const yytype_uint8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int16 yytable[] =
 {
-      25,    67,    31,    78,    79,    34,    35,    36,    37,    32,
-     131,   132,    30,   104,     1,     2,     3,     4,    33,    40,
-      93,    43,   143,    44,    56,     5,     6,     7,     8,   115,
-      34,    35,    36,    94,    41,   150,    42,     9,    30,    85,
-       2,     3,     4,    75,   129,    10,    45,    46,    47,    84,
-      48,    49,    70,    11,    12,    13,    14,    68,    69,    99,
-     100,   113,   116,    30,    57,    58,    59,    60,    61,    62,
-      63,    64,    65,   126,   133,   134,    81,     5,     6,     7,
-       8,    96,    97,    77,   133,   149,    82,   136,    40,     9,
-     107,   140,    12,   109,   110,    83,    71,    10,    72,   126,
-      87,    76,    88,    92,    40,    11,    12,    13,    14,     5,
-       6,     7,     8,   -34,    44,    95,    89,   -33,   117,    40,
-      90,     9,   118,   119,   120,   123,   124,    90,    90,    10,
-     137,   127,   106,   130,   138,   111,   108,    11,    12,    13,
-      14,    57,    58,    59,    60,    61,    62,    63,    64,    65,
-     112,   139,   141,   145,   147,   148,    57,    58,    59,    60,
-      61,    62,    63,    64,    65,    91,   151,   114,   146,    57,
-      58,    59,    60,    61,    62,    63,    64,    65,   121,    80,
-       0,     0,    57,    58,    59,    60,    61,    62,    63,    64,
-      65,    98,    57,    58,    59,    60,    61,    62,    63,    64,
-      65,   122,    57,    58,    59,    60,    61,    62,    63,    64,
-      65,   144,    57,    58,    59,    60,    61,    62,    63,    64,
-      65,    57,    58,    59,    60,    61,    62,    63,    64,    65
+      21,    26,    61,    27,    78,    79,    28,    -9,    99,   100,
+       1,    -9,    -9,    -9,    72,    35,    37,    76,    38,    93,
+      50,     2,     3,     4,     5,    64,    65,    66,    67,    64,
+      65,    66,    94,     6,   128,   129,    70,    75,    85,   130,
+     131,     7,    29,    84,     2,     3,     4,     5,    87,     8,
+       9,    10,    11,   145,   113,   114,     6,   -34,    26,    89,
+     149,   -33,    26,    90,     7,    62,   116,    30,    31,    32,
+      90,    36,     8,     9,    10,    11,   117,   134,   123,   124,
+      90,    96,    97,    71,     2,     3,     4,     5,   112,    77,
+     106,   130,   150,   108,   109,   138,     6,   105,     9,   140,
+      81,   107,    83,   125,     7,    70,    70,   126,   123,    38,
+      63,    82,     8,     9,    10,    11,    51,    52,    53,    54,
+      55,    56,    57,    58,    59,   110,    88,   135,    70,    92,
+     104,    51,    52,    53,    54,    55,    56,    57,    58,    59,
+     111,    30,    31,    32,    95,   120,    51,    52,    53,    54,
+      55,    56,    57,    58,    59,    91,   121,   127,   132,    51,
+      52,    53,    54,    55,    56,    57,    58,    59,   118,   136,
+     137,   142,    51,    52,    53,    54,    55,    56,    57,    58,
+      59,    98,    51,    52,    53,    54,    55,    56,    57,    58,
+      59,   119,    51,    52,    53,    54,    55,    56,    57,    58,
+      59,   141,    51,    52,    53,    54,    55,    56,    57,    58,
+      59,    51,    52,    53,    54,    55,    56,    57,    58,    59,
+      39,    40,    41,   143,    42,    43,   148,   146,   101,   151,
+     147,    80
 };
 
-static const yytype_int16 yycheck[] =
+static const yytype_uint8 yycheck[] =
 {
-       0,    28,     1,    45,    46,    10,    11,    12,    13,     9,
-     123,   124,    43,    87,     3,     4,     5,     6,     0,    18,
-      28,    28,   135,    30,    24,    14,    15,    16,    17,   103,
-      10,    11,    12,    41,    30,   148,    26,    26,    43,    66,
-       4,     5,     6,    43,   118,    34,    18,    19,    20,    49,
-      22,    23,    43,    42,    43,    44,    45,    24,    27,     7,
-       8,    25,   104,    43,    33,    34,    35,    36,    37,    38,
-      39,    40,    41,   115,    31,    32,    26,    14,    15,    16,
-      17,    81,    82,    43,    31,    32,    26,   129,    87,    26,
-      90,   133,    43,    93,    94,    32,    39,    34,    41,   141,
-      26,    44,    26,    26,   103,    42,    43,    44,    45,    14,
-      15,    16,    17,    26,    30,    32,    27,    30,    27,   118,
-      31,    26,    31,    27,    27,    24,    24,    31,    31,    34,
-     130,    24,    88,    41,    25,    27,    92,    42,    43,    44,
-      45,    33,    34,    35,    36,    37,    38,    39,    40,    41,
-      27,    25,     9,    21,    25,    24,    33,    34,    35,    36,
-      37,    38,    39,    40,    41,    29,    25,   101,   141,    33,
-      34,    35,    36,    37,    38,    39,    40,    41,    29,    46,
-      -1,    -1,    33,    34,    35,    36,    37,    38,    39,    40,
+       0,    43,    24,     1,    39,    40,     6,     0,     7,     8,
+       3,     4,     5,     6,    35,    30,    28,    38,    30,    28,
+      20,    14,    15,    16,    17,    10,    11,    12,    13,    10,
+      11,    12,    41,    26,   120,   121,    34,    37,    60,    31,
+      32,    34,     0,    43,    14,    15,    16,    17,    69,    42,
+      43,    44,    45,   139,   103,   104,    26,    26,    43,    27,
+     146,    30,    43,    31,    34,    24,    27,     4,     5,     6,
+      31,    26,    42,    43,    44,    45,    27,   126,   113,   114,
+      31,    81,    82,    43,    14,    15,    16,    17,    25,    43,
+      90,    31,    32,    93,    94,   130,    26,    88,    43,   134,
+      26,    92,    32,    27,    34,   103,   104,    31,   143,    30,
+      27,    26,    42,    43,    44,    45,    33,    34,    35,    36,
+      37,    38,    39,    40,    41,    27,    26,   127,   126,    26,
+      26,    33,    34,    35,    36,    37,    38,    39,    40,    41,
+      27,     4,     5,     6,    32,    24,    33,    34,    35,    36,
+      37,    38,    39,    40,    41,    29,    24,    41,    24,    33,
+      34,    35,    36,    37,    38,    39,    40,    41,    29,    25,
+      25,    21,    33,    34,    35,    36,    37,    38,    39,    40,
       41,    32,    33,    34,    35,    36,    37,    38,    39,    40,
       41,    32,    33,    34,    35,    36,    37,    38,    39,    40,
       41,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      41,    33,    34,    35,    36,    37,    38,    39,    40,    41
+      41,    33,    34,    35,    36,    37,    38,    39,    40,    41,
+      18,    19,    20,     9,    22,    23,    25,    24,    86,    25,
+     143,    40
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,     4,     5,     6,    14,    15,    16,    17,    26,
-      34,    42,    43,    44,    45,    47,    48,    54,    55,    62,
-      63,    64,    65,    66,    73,    74,    75,    76,    79,    80,
-      43,    62,    74,     0,    10,    11,    12,    13,    53,    56,
-      62,    30,    26,    28,    30,    18,    19,    20,    22,    23,
-      67,    68,    69,    70,    71,    72,    74,    33,    34,    35,
-      36,    37,    38,    39,    40,    41,    78,    75,    24,    27,
-      43,    63,    63,    74,    77,    74,    63,    43,    64,    64,
-      76,    26,    26,    32,    74,    75,    49,    26,    26,    27,
+       0,     3,    14,    15,    16,    17,    26,    34,    42,    43,
+      44,    45,    47,    48,    50,    62,    63,    64,    65,    66,
+      73,    74,    75,    76,    79,    80,    43,    62,    74,     0,
+       4,     5,     6,    54,    55,    30,    26,    28,    30,    18,
+      19,    20,    22,    23,    67,    68,    69,    70,    71,    72,
+      74,    33,    34,    35,    36,    37,    38,    39,    40,    41,
+      78,    75,    24,    27,    10,    11,    12,    13,    53,    56,
+      62,    43,    63,    74,    77,    74,    63,    43,    64,    64,
+      76,    26,    26,    32,    74,    75,    49,    63,    26,    27,
       31,    29,    26,    28,    41,    32,    74,    74,    32,     7,
-       8,    50,    51,    52,    53,    57,    77,    74,    77,    74,
-      74,    27,    27,    25,    54,    53,    64,    27,    31,    27,
-      27,    29,    32,    24,    24,    61,    64,    24,    58,    53,
-      41,    65,    65,    31,    32,    59,    64,    74,    25,    25,
-      64,     9,    60,    65,    32,    21,    61,    25,    24,    32,
-      65,    25
+       8,    50,    51,    52,    26,    77,    74,    77,    74,    74,
+      27,    27,    25,    53,    53,    57,    27,    27,    29,    32,
+      24,    24,    61,    64,    64,    27,    31,    41,    65,    65,
+      31,    32,    24,    58,    53,    74,    25,    25,    64,    59,
+      64,    32,    21,     9,    60,    65,    24,    61,    25,    65,
+      32,    25
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
@@ -1278,43 +1280,43 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: expressions  */
-#line 46 "parser.y"
+#line 46 "JackAnalyzer.y"
                 {
         print_tree((yyvsp[0].node), 0);
         free_tree((yyvsp[0].node));
     }
-#line 1287 "parser.tab.c"
+#line 1289 "JackAnalyzer.tab.c"
     break;
 
   case 3: /* program: statements  */
-#line 50 "parser.y"
+#line 50 "JackAnalyzer.y"
                  {
         print_tree((yyvsp[0].node), 0);
         free_tree((yyvsp[0].node));
     }
-#line 1296 "parser.tab.c"
+#line 1298 "JackAnalyzer.tab.c"
     break;
 
-  case 4: /* program: subroutineDec  */
-#line 54 "parser.y"
-                    {
+  case 4: /* program: subroutineDecList  */
+#line 54 "JackAnalyzer.y"
+                        {
         print_tree((yyvsp[0].node), 0);
         free_tree((yyvsp[0].node));
     }
-#line 1305 "parser.tab.c"
+#line 1307 "JackAnalyzer.tab.c"
     break;
 
   case 5: /* program: class  */
-#line 58 "parser.y"
+#line 58 "JackAnalyzer.y"
             {
         print_tree((yyvsp[0].node), 0);
         free_tree((yyvsp[0].node));
     }
-#line 1314 "parser.tab.c"
+#line 1316 "JackAnalyzer.tab.c"
     break;
 
   case 6: /* class: CLASS className LBRACE classVarDecList subroutineDecList RBRACE  */
-#line 65 "parser.y"
+#line 65 "JackAnalyzer.y"
                                                                     {
         (yyval.node) = create_node("class", NULL);
         add_child((yyval.node), create_node("keyword", "class"));
@@ -1324,45 +1326,45 @@ yyreduce:
         take_children((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1328 "parser.tab.c"
+#line 1330 "JackAnalyzer.tab.c"
     break;
 
   case 7: /* classVarDecList: %empty  */
-#line 78 "parser.y"
+#line 78 "JackAnalyzer.y"
     {
         (yyval.node) = create_node("classVarDecList", NULL);
     }
-#line 1336 "parser.tab.c"
+#line 1338 "JackAnalyzer.tab.c"
     break;
 
   case 8: /* classVarDecList: classVarDecList classVarDec  */
-#line 81 "parser.y"
+#line 81 "JackAnalyzer.y"
                                   {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1345 "parser.tab.c"
+#line 1347 "JackAnalyzer.tab.c"
     break;
 
   case 9: /* subroutineDecList: %empty  */
-#line 89 "parser.y"
+#line 89 "JackAnalyzer.y"
     {
         (yyval.node) = create_node("subroutineDecList", NULL);
     }
-#line 1353 "parser.tab.c"
+#line 1355 "JackAnalyzer.tab.c"
     break;
 
   case 10: /* subroutineDecList: subroutineDecList subroutineDec  */
-#line 92 "parser.y"
+#line 92 "JackAnalyzer.y"
                                       {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1362 "parser.tab.c"
+#line 1364 "JackAnalyzer.tab.c"
     break;
 
   case 11: /* classVarDec: classVarType type varNameList SEMICOLON  */
-#line 99 "parser.y"
+#line 99 "JackAnalyzer.y"
                                             {
         (yyval.node) = create_node("classVarDec", NULL);
         add_child((yyval.node), (yyvsp[-3].node));
@@ -1370,59 +1372,59 @@ yyreduce:
         take_children((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1374 "parser.tab.c"
+#line 1376 "JackAnalyzer.tab.c"
     break;
 
   case 12: /* classVarType: STATIC  */
-#line 110 "parser.y"
+#line 110 "JackAnalyzer.y"
            {
         (yyval.node) = create_node("keyword", "static");
     }
-#line 1382 "parser.tab.c"
+#line 1384 "JackAnalyzer.tab.c"
     break;
 
   case 13: /* classVarType: FIELD  */
-#line 113 "parser.y"
+#line 113 "JackAnalyzer.y"
             {
         (yyval.node) = create_node("keyword", "field");
     }
-#line 1390 "parser.tab.c"
+#line 1392 "JackAnalyzer.tab.c"
     break;
 
   case 14: /* type: INT  */
-#line 119 "parser.y"
+#line 119 "JackAnalyzer.y"
         {
         (yyval.node) = create_node("keyword", "int");
     }
-#line 1398 "parser.tab.c"
+#line 1400 "JackAnalyzer.tab.c"
     break;
 
   case 15: /* type: CHAR  */
-#line 122 "parser.y"
+#line 122 "JackAnalyzer.y"
            {
         (yyval.node) = create_node("keyword", "char");
     }
-#line 1406 "parser.tab.c"
+#line 1408 "JackAnalyzer.tab.c"
     break;
 
   case 16: /* type: BOOLEAN  */
-#line 125 "parser.y"
+#line 125 "JackAnalyzer.y"
               {
         (yyval.node) = create_node("keyword", "boolean");
     }
-#line 1414 "parser.tab.c"
+#line 1416 "JackAnalyzer.tab.c"
     break;
 
   case 17: /* type: className  */
-#line 128 "parser.y"
+#line 128 "JackAnalyzer.y"
                 {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1422 "parser.tab.c"
+#line 1424 "JackAnalyzer.tab.c"
     break;
 
   case 18: /* subroutineDec: subroutineType returnType subroutineName LPAREN parameterList RPAREN subroutineBody  */
-#line 134 "parser.y"
+#line 134 "JackAnalyzer.y"
                                                                                         {
         (yyval.node) = create_node("subroutineDec", NULL);
         add_child((yyval.node), (yyvsp[-6].node));
@@ -1433,80 +1435,80 @@ yyreduce:
         add_child((yyval.node), create_node("symbol", ")"));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1437 "parser.tab.c"
+#line 1439 "JackAnalyzer.tab.c"
     break;
 
   case 19: /* subroutineType: CONSTRUCTOR  */
-#line 148 "parser.y"
+#line 148 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("keyword", "constructor");
     }
-#line 1445 "parser.tab.c"
+#line 1447 "JackAnalyzer.tab.c"
     break;
 
   case 20: /* subroutineType: FUNCTION  */
-#line 151 "parser.y"
+#line 151 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("keyword", "function");
     }
-#line 1453 "parser.tab.c"
+#line 1455 "JackAnalyzer.tab.c"
     break;
 
   case 21: /* subroutineType: METHOD  */
-#line 154 "parser.y"
+#line 154 "JackAnalyzer.y"
              {
         (yyval.node) = create_node("keyword", "method");
     }
-#line 1461 "parser.tab.c"
+#line 1463 "JackAnalyzer.tab.c"
     break;
 
   case 22: /* returnType: VOID  */
-#line 161 "parser.y"
+#line 161 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("keyword", "void");
     }
-#line 1469 "parser.tab.c"
+#line 1471 "JackAnalyzer.tab.c"
     break;
 
   case 23: /* returnType: type  */
-#line 164 "parser.y"
+#line 164 "JackAnalyzer.y"
            {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1477 "parser.tab.c"
+#line 1479 "JackAnalyzer.tab.c"
     break;
 
   case 24: /* parameterList: %empty  */
-#line 170 "parser.y"
+#line 170 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("parameterList", NULL);
     }
-#line 1485 "parser.tab.c"
+#line 1487 "JackAnalyzer.tab.c"
     break;
 
   case 25: /* parameterList: type varName  */
-#line 173 "parser.y"
+#line 173 "JackAnalyzer.y"
                    {
         (yyval.node) = create_node("parameterList", NULL);
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1495 "parser.tab.c"
+#line 1497 "JackAnalyzer.tab.c"
     break;
 
   case 26: /* parameterList: parameterList COMMA type varName  */
-#line 178 "parser.y"
+#line 178 "JackAnalyzer.y"
                                        {
         (yyval.node) = (yyvsp[-3].node);
         add_child((yyval.node), create_node("symbol", ","));
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1506 "parser.tab.c"
+#line 1508 "JackAnalyzer.tab.c"
     break;
 
   case 27: /* subroutineBody: LBRACE varDecList statements RBRACE  */
-#line 187 "parser.y"
+#line 187 "JackAnalyzer.y"
                                         {
         (yyval.node) = create_node("subroutineBody", NULL);
         add_child((yyval.node), create_node("symbol", "{"));
@@ -1514,147 +1516,147 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node)); // statements
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1518 "parser.tab.c"
+#line 1520 "JackAnalyzer.tab.c"
     break;
 
   case 28: /* varDecList: %empty  */
-#line 198 "parser.y"
+#line 198 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("varDecList", NULL);
     }
-#line 1526 "parser.tab.c"
+#line 1528 "JackAnalyzer.tab.c"
     break;
 
   case 29: /* varDecList: varDecList varDec  */
-#line 201 "parser.y"
+#line 201 "JackAnalyzer.y"
                         {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1535 "parser.tab.c"
+#line 1537 "JackAnalyzer.tab.c"
     break;
 
   case 30: /* varDec: VAR varNameList SEMICOLON  */
-#line 208 "parser.y"
+#line 208 "JackAnalyzer.y"
                               {
         (yyval.node) = create_node("varDec", NULL);
         add_child((yyval.node), create_node("keyword", "var"));
         take_children((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1546 "parser.tab.c"
+#line 1548 "JackAnalyzer.tab.c"
     break;
 
   case 31: /* varNameList: varName  */
-#line 218 "parser.y"
+#line 218 "JackAnalyzer.y"
             {
         (yyval.node) = create_node("varNameList", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1555 "parser.tab.c"
+#line 1557 "JackAnalyzer.tab.c"
     break;
 
   case 32: /* varNameList: varNameList COMMA varName  */
-#line 222 "parser.y"
+#line 222 "JackAnalyzer.y"
                                 {
         (yyval.node) = (yyvsp[-2].node);
         add_child((yyval.node), create_node("symbol", ","));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1565 "parser.tab.c"
+#line 1567 "JackAnalyzer.tab.c"
     break;
 
   case 33: /* className: IDENTIFIER  */
-#line 230 "parser.y"
+#line 230 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("identifier", (yyvsp[0].sval));
     }
-#line 1573 "parser.tab.c"
+#line 1575 "JackAnalyzer.tab.c"
     break;
 
   case 34: /* subroutineName: IDENTIFIER  */
-#line 236 "parser.y"
+#line 236 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("identifier", (yyvsp[0].sval));
     }
-#line 1581 "parser.tab.c"
+#line 1583 "JackAnalyzer.tab.c"
     break;
 
   case 35: /* varName: IDENTIFIER  */
-#line 242 "parser.y"
+#line 242 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("identifier", (yyvsp[0].sval));
     }
-#line 1589 "parser.tab.c"
+#line 1591 "JackAnalyzer.tab.c"
     break;
 
   case 36: /* statements: statementList  */
-#line 248 "parser.y"
+#line 248 "JackAnalyzer.y"
                   {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1597 "parser.tab.c"
+#line 1599 "JackAnalyzer.tab.c"
     break;
 
   case 37: /* statementList: %empty  */
-#line 255 "parser.y"
+#line 255 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("statements", NULL);
     }
-#line 1605 "parser.tab.c"
+#line 1607 "JackAnalyzer.tab.c"
     break;
 
   case 38: /* statementList: statementList statement  */
-#line 258 "parser.y"
+#line 258 "JackAnalyzer.y"
                               {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1614 "parser.tab.c"
+#line 1616 "JackAnalyzer.tab.c"
     break;
 
   case 39: /* statement: letStatement  */
-#line 265 "parser.y"
+#line 265 "JackAnalyzer.y"
                  {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1622 "parser.tab.c"
+#line 1624 "JackAnalyzer.tab.c"
     break;
 
   case 40: /* statement: ifStatement  */
-#line 268 "parser.y"
+#line 268 "JackAnalyzer.y"
                   {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1630 "parser.tab.c"
+#line 1632 "JackAnalyzer.tab.c"
     break;
 
   case 41: /* statement: whileStatement  */
-#line 271 "parser.y"
+#line 271 "JackAnalyzer.y"
                      {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1638 "parser.tab.c"
+#line 1640 "JackAnalyzer.tab.c"
     break;
 
   case 42: /* statement: doStatement  */
-#line 274 "parser.y"
+#line 274 "JackAnalyzer.y"
                   {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1646 "parser.tab.c"
+#line 1648 "JackAnalyzer.tab.c"
     break;
 
   case 43: /* statement: returnStatement  */
-#line 277 "parser.y"
+#line 277 "JackAnalyzer.y"
                       {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1654 "parser.tab.c"
+#line 1656 "JackAnalyzer.tab.c"
     break;
 
   case 44: /* letStatement: LET varName EQ expression SEMICOLON  */
-#line 283 "parser.y"
+#line 283 "JackAnalyzer.y"
                                         {
         (yyval.node) = create_node("letStatement", NULL);
         add_child((yyval.node), create_node("keyword", "let"));
@@ -1663,11 +1665,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1667 "parser.tab.c"
+#line 1669 "JackAnalyzer.tab.c"
     break;
 
   case 45: /* letStatement: LET varName LBRACKET expression RBRACKET EQ expression SEMICOLON  */
-#line 291 "parser.y"
+#line 291 "JackAnalyzer.y"
                                                                        {
         (yyval.node) = create_node("letStatement", NULL);
         add_child((yyval.node), create_node("keyword", "let"));
@@ -1679,11 +1681,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1683 "parser.tab.c"
+#line 1685 "JackAnalyzer.tab.c"
     break;
 
   case 46: /* ifStatement: IF LPAREN expression RPAREN LBRACE statements RBRACE  */
-#line 305 "parser.y"
+#line 305 "JackAnalyzer.y"
                                                          {
         (yyval.node) = create_node("ifStatement", NULL);
         add_child((yyval.node), create_node("keyword", "if"));
@@ -1694,11 +1696,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1698 "parser.tab.c"
+#line 1700 "JackAnalyzer.tab.c"
     break;
 
   case 47: /* ifStatement: IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE  */
-#line 315 "parser.y"
+#line 315 "JackAnalyzer.y"
                                                                                          {
         (yyval.node) = create_node("ifStatement", NULL);
         add_child((yyval.node), create_node("keyword", "if"));
@@ -1713,11 +1715,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1717 "parser.tab.c"
+#line 1719 "JackAnalyzer.tab.c"
     break;
 
   case 48: /* whileStatement: WHILE LPAREN expression RPAREN LBRACE statements RBRACE  */
-#line 332 "parser.y"
+#line 332 "JackAnalyzer.y"
                                                             {
         (yyval.node) = create_node("whileStatement", NULL);
         add_child((yyval.node), create_node("keyword", "while"));
@@ -1728,116 +1730,116 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1732 "parser.tab.c"
+#line 1734 "JackAnalyzer.tab.c"
     break;
 
   case 49: /* doStatement: DO subroutineCall SEMICOLON  */
-#line 345 "parser.y"
+#line 345 "JackAnalyzer.y"
                                 {
         (yyval.node) = create_node("doStatement", NULL);
         add_child((yyval.node), create_node("keyword", "do"));
         take_children((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1743 "parser.tab.c"
+#line 1745 "JackAnalyzer.tab.c"
     break;
 
   case 50: /* returnStatement: RETURN SEMICOLON  */
-#line 354 "parser.y"
+#line 354 "JackAnalyzer.y"
                      {
         (yyval.node) = create_node("returnStatement", NULL);
         add_child((yyval.node), create_node("keyword", "return"));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1753 "parser.tab.c"
+#line 1755 "JackAnalyzer.tab.c"
     break;
 
   case 51: /* returnStatement: RETURN expression SEMICOLON  */
-#line 359 "parser.y"
+#line 359 "JackAnalyzer.y"
                                   {
         (yyval.node) = create_node("returnStatement", NULL);
         add_child((yyval.node), create_node("keyword", "return"));
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1764 "parser.tab.c"
+#line 1766 "JackAnalyzer.tab.c"
     break;
 
   case 52: /* expressions: expression  */
-#line 368 "parser.y"
+#line 368 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("expressions", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1773 "parser.tab.c"
+#line 1775 "JackAnalyzer.tab.c"
     break;
 
   case 53: /* expressions: expressions expression  */
-#line 372 "parser.y"
+#line 372 "JackAnalyzer.y"
                              {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1782 "parser.tab.c"
+#line 1784 "JackAnalyzer.tab.c"
     break;
 
   case 54: /* expression: term  */
-#line 379 "parser.y"
+#line 379 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("expression", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1791 "parser.tab.c"
+#line 1793 "JackAnalyzer.tab.c"
     break;
 
   case 55: /* expression: expression op term  */
-#line 383 "parser.y"
+#line 383 "JackAnalyzer.y"
                          {
         (yyval.node) = (yyvsp[-2].node);
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1801 "parser.tab.c"
+#line 1803 "JackAnalyzer.tab.c"
     break;
 
   case 56: /* term: INTEGER_CONSTANT  */
-#line 391 "parser.y"
+#line 391 "JackAnalyzer.y"
                      {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), create_node("integerConstant", (yyvsp[0].sval)));
     }
-#line 1810 "parser.tab.c"
+#line 1812 "JackAnalyzer.tab.c"
     break;
 
   case 57: /* term: STRING_CONSTANT  */
-#line 395 "parser.y"
+#line 395 "JackAnalyzer.y"
                       {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), create_node("stringConstant", (yyvsp[0].sval)));
     }
-#line 1819 "parser.tab.c"
+#line 1821 "JackAnalyzer.tab.c"
     break;
 
   case 58: /* term: keywordConstant  */
-#line 399 "parser.y"
+#line 399 "JackAnalyzer.y"
                       {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1828 "parser.tab.c"
+#line 1830 "JackAnalyzer.tab.c"
     break;
 
   case 59: /* term: varName  */
-#line 403 "parser.y"
+#line 403 "JackAnalyzer.y"
               {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1837 "parser.tab.c"
+#line 1839 "JackAnalyzer.tab.c"
     break;
 
   case 60: /* term: varName LBRACKET expression RBRACKET  */
-#line 407 "parser.y"
+#line 407 "JackAnalyzer.y"
                                            {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), (yyvsp[-3].node));
@@ -1845,41 +1847,41 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "]"));
     }
-#line 1849 "parser.tab.c"
+#line 1851 "JackAnalyzer.tab.c"
     break;
 
   case 61: /* term: subroutineCall  */
-#line 414 "parser.y"
+#line 414 "JackAnalyzer.y"
                      {
         (yyval.node) = create_node("term", NULL);
         take_children((yyval.node), (yyvsp[0].node));
     }
-#line 1858 "parser.tab.c"
+#line 1860 "JackAnalyzer.tab.c"
     break;
 
   case 62: /* term: LPAREN expression RPAREN  */
-#line 418 "parser.y"
+#line 418 "JackAnalyzer.y"
                                {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), create_node("symbol", "("));
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ")"));
     }
-#line 1869 "parser.tab.c"
+#line 1871 "JackAnalyzer.tab.c"
     break;
 
   case 63: /* term: unaryOp term  */
-#line 424 "parser.y"
+#line 424 "JackAnalyzer.y"
                    {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1879 "parser.tab.c"
+#line 1881 "JackAnalyzer.tab.c"
     break;
 
   case 64: /* subroutineCall: subroutineName LPAREN expressionList RPAREN  */
-#line 432 "parser.y"
+#line 432 "JackAnalyzer.y"
                                                 {
         (yyval.node) = create_node("subroutineCall", NULL);
         add_child((yyval.node), (yyvsp[-3].node));
@@ -1887,11 +1889,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ")"));
     }
-#line 1891 "parser.tab.c"
+#line 1893 "JackAnalyzer.tab.c"
     break;
 
   case 65: /* subroutineCall: className DOT subroutineName LPAREN expressionList RPAREN  */
-#line 439 "parser.y"
+#line 439 "JackAnalyzer.y"
                                                                 {
         (yyval.node) = create_node("subroutineCall", NULL);
         add_child((yyval.node), (yyvsp[-5].node));
@@ -1901,11 +1903,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ")"));
     }
-#line 1905 "parser.tab.c"
+#line 1907 "JackAnalyzer.tab.c"
     break;
 
   case 66: /* subroutineCall: varName DOT subroutineName LPAREN expressionList RPAREN  */
-#line 448 "parser.y"
+#line 448 "JackAnalyzer.y"
                                                               {
         (yyval.node) = create_node("subroutineCall", NULL);
         add_child((yyval.node), (yyvsp[-5].node));
@@ -1915,169 +1917,169 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ")"));
     }
-#line 1919 "parser.tab.c"
+#line 1921 "JackAnalyzer.tab.c"
     break;
 
   case 67: /* expressionList: %empty  */
-#line 460 "parser.y"
+#line 460 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("expressionList", NULL);
     }
-#line 1927 "parser.tab.c"
+#line 1929 "JackAnalyzer.tab.c"
     break;
 
   case 68: /* expressionList: expression  */
-#line 463 "parser.y"
+#line 463 "JackAnalyzer.y"
                  {
         (yyval.node) = create_node("expressionList", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1936 "parser.tab.c"
+#line 1938 "JackAnalyzer.tab.c"
     break;
 
   case 69: /* expressionList: expressionList COMMA expression  */
-#line 467 "parser.y"
+#line 467 "JackAnalyzer.y"
                                       {
         (yyval.node) = (yyvsp[-2].node);
         add_child((yyval.node), create_node("symbol", ","));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1946 "parser.tab.c"
+#line 1948 "JackAnalyzer.tab.c"
     break;
 
   case 70: /* op: PLUS  */
-#line 475 "parser.y"
+#line 475 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("op", NULL);
         add_child((yyval.node), create_node("symbol", "+"));
     }
-#line 1955 "parser.tab.c"
+#line 1957 "JackAnalyzer.tab.c"
     break;
 
   case 71: /* op: MINUS  */
-#line 479 "parser.y"
+#line 479 "JackAnalyzer.y"
             {
         (yyval.node) = create_node("op", NULL);
         add_child((yyval.node), create_node("symbol", "-"));
     }
-#line 1964 "parser.tab.c"
+#line 1966 "JackAnalyzer.tab.c"
     break;
 
   case 72: /* op: MULTIPLY  */
-#line 483 "parser.y"
+#line 483 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("op", NULL);
         add_child((yyval.node), create_node("symbol", "*"));
     }
-#line 1973 "parser.tab.c"
+#line 1975 "JackAnalyzer.tab.c"
     break;
 
   case 73: /* op: DIVIDE  */
-#line 487 "parser.y"
+#line 487 "JackAnalyzer.y"
              {
         (yyval.node) = create_node("op", NULL);
         add_child((yyval.node), create_node("symbol", "/"));
     }
-#line 1982 "parser.tab.c"
+#line 1984 "JackAnalyzer.tab.c"
     break;
 
   case 74: /* op: AND  */
-#line 491 "parser.y"
+#line 491 "JackAnalyzer.y"
           {
         (yyval.node) = create_node("op", NULL);
         add_child((yyval.node), create_node("symbol", "&"));
     }
-#line 1991 "parser.tab.c"
+#line 1993 "JackAnalyzer.tab.c"
     break;
 
   case 75: /* op: OR  */
-#line 495 "parser.y"
+#line 495 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("op", NULL);
         add_child((yyval.node), create_node("symbol", "|"));
     }
-#line 2000 "parser.tab.c"
+#line 2002 "JackAnalyzer.tab.c"
     break;
 
   case 76: /* op: LT  */
-#line 499 "parser.y"
+#line 499 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("op", NULL);
         add_child((yyval.node), create_node("symbol", "<"));
     }
-#line 2009 "parser.tab.c"
+#line 2011 "JackAnalyzer.tab.c"
     break;
 
   case 77: /* op: GT  */
-#line 503 "parser.y"
+#line 503 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("op", NULL);
         add_child((yyval.node), create_node("symbol", ">"));
     }
-#line 2018 "parser.tab.c"
+#line 2020 "JackAnalyzer.tab.c"
     break;
 
   case 78: /* op: EQ  */
-#line 507 "parser.y"
+#line 507 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("op", NULL);
         add_child((yyval.node), create_node("symbol", "="));
     }
-#line 2027 "parser.tab.c"
+#line 2029 "JackAnalyzer.tab.c"
     break;
 
   case 79: /* unaryOp: MINUS  */
-#line 514 "parser.y"
+#line 514 "JackAnalyzer.y"
           {
         (yyval.node) = create_node("unaryOp", NULL);
         add_child((yyval.node), create_node("symbol", "-"));
     }
-#line 2036 "parser.tab.c"
+#line 2038 "JackAnalyzer.tab.c"
     break;
 
   case 80: /* unaryOp: NOT  */
-#line 518 "parser.y"
+#line 518 "JackAnalyzer.y"
           {
         (yyval.node) = create_node("unaryOp", NULL);
         add_child((yyval.node), create_node("symbol", "~"));
     }
-#line 2045 "parser.tab.c"
+#line 2047 "JackAnalyzer.tab.c"
     break;
 
   case 81: /* keywordConstant: TRUE  */
-#line 525 "parser.y"
+#line 525 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("keyword", "true");
     }
-#line 2053 "parser.tab.c"
+#line 2055 "JackAnalyzer.tab.c"
     break;
 
   case 82: /* keywordConstant: FALSE  */
-#line 528 "parser.y"
+#line 528 "JackAnalyzer.y"
             {
         (yyval.node) = create_node("keyword", "false");
     }
-#line 2061 "parser.tab.c"
+#line 2063 "JackAnalyzer.tab.c"
     break;
 
   case 83: /* keywordConstant: TK_NULL  */
-#line 531 "parser.y"
+#line 531 "JackAnalyzer.y"
               {
         (yyval.node) = create_node("keyword", "null");
     }
-#line 2069 "parser.tab.c"
+#line 2071 "JackAnalyzer.tab.c"
     break;
 
   case 84: /* keywordConstant: THIS  */
-#line 534 "parser.y"
+#line 534 "JackAnalyzer.y"
            {
         (yyval.node) = create_node("keyword", "this");
     }
-#line 2077 "parser.tab.c"
+#line 2079 "JackAnalyzer.tab.c"
     break;
 
 
-#line 2081 "parser.tab.c"
+#line 2083 "JackAnalyzer.tab.c"
 
       default: break;
     }
@@ -2270,7 +2272,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 539 "parser.y"
+#line 539 "JackAnalyzer.y"
 
 TreeNode* create_node(const char *tag, const char *value) {
     TreeNode *node = (TreeNode *)malloc(sizeof(TreeNode));

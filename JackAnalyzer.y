@@ -51,7 +51,7 @@ program:
         print_tree($1, 0);
         free_tree($1);
     }
-    | subroutineDec {
+    | subroutineDecList {
         print_tree($1, 0);
         free_tree($1);
     }

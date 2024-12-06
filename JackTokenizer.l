@@ -1,7 +1,7 @@
 %option noyywrap
 
 %{
-#include "parser.tab.h"
+#include "JackAnalyzer.tab.h"
 #include <stdio.h>
 #include <stdlib.h>
 %}
@@ -13,7 +13,7 @@
 "//".*     {}
 [ \t\n\r]+  {}
 
-"class"          { return CLASS; }
+"class"          { yylval.sval = "class", return CLASS; }
 "constructor"    { return CONSTRUCTOR; }
 "function"       { return FUNCTION; }
 "method"         { return METHOD; }
