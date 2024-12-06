@@ -75,28 +75,28 @@ extern int yydebug;
     ELSE = 276,                    /* ELSE  */
     WHILE = 277,                   /* WHILE  */
     RETURN = 278,                  /* RETURN  */
-    IDENTIFIER = 279,              /* IDENTIFIER  */
-    STRING_CONSTANT = 280,         /* STRING_CONSTANT  */
-    INTEGER_CONSTANT = 281,        /* INTEGER_CONSTANT  */
-    LBRACE = 282,                  /* LBRACE  */
-    RBRACE = 283,                  /* RBRACE  */
-    LPAREN = 284,                  /* LPAREN  */
-    RPAREN = 285,                  /* RPAREN  */
-    LBRACKET = 286,                /* LBRACKET  */
-    RBRACKET = 287,                /* RBRACKET  */
-    DOT = 288,                     /* DOT  */
-    COMMA = 289,                   /* COMMA  */
-    SEMICOLON = 290,               /* SEMICOLON  */
-    PLUS = 291,                    /* PLUS  */
-    MINUS = 292,                   /* MINUS  */
-    MULTIPLY = 293,                /* MULTIPLY  */
-    DIVIDE = 294,                  /* DIVIDE  */
-    AND = 295,                     /* AND  */
-    OR = 296,                      /* OR  */
-    LT = 297,                      /* LT  */
-    GT = 298,                      /* GT  */
-    EQ = 299,                      /* EQ  */
-    NOT = 300                      /* NOT  */
+    LBRACE = 279,                  /* LBRACE  */
+    RBRACE = 280,                  /* RBRACE  */
+    LPAREN = 281,                  /* LPAREN  */
+    RPAREN = 282,                  /* RPAREN  */
+    LBRACKET = 283,                /* LBRACKET  */
+    RBRACKET = 284,                /* RBRACKET  */
+    DOT = 285,                     /* DOT  */
+    COMMA = 286,                   /* COMMA  */
+    SEMICOLON = 287,               /* SEMICOLON  */
+    PLUS = 288,                    /* PLUS  */
+    MINUS = 289,                   /* MINUS  */
+    MULTIPLY = 290,                /* MULTIPLY  */
+    DIVIDE = 291,                  /* DIVIDE  */
+    AND = 292,                     /* AND  */
+    OR = 293,                      /* OR  */
+    LT = 294,                      /* LT  */
+    GT = 295,                      /* GT  */
+    EQ = 296,                      /* EQ  */
+    NOT = 297,                     /* NOT  */
+    IDENTIFIER = 298,              /* IDENTIFIER  */
+    STRING_CONSTANT = 299,         /* STRING_CONSTANT  */
+    INTEGER_CONSTANT = 300         /* INTEGER_CONSTANT  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -105,7 +105,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 26 "parser.y"
+#line 25 "parser.y"
 
     struct TreeNode *node;
     char *sval;

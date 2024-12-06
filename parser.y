@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Tree node structure
 typedef struct TreeNode {
     char *tag;                  // XML tag
     char *value;                // Value (if leaf node)
@@ -29,8 +28,8 @@ extern int yylineno;
 }
 
 %token CLASS CONSTRUCTOR FUNCTION METHOD FIELD STATIC VAR INT CHAR BOOLEAN VOID TRUE FALSE TK_NULL THIS LET DO IF ELSE WHILE RETURN
-%token <sval> IDENTIFIER STRING_CONSTANT INTEGER_CONSTANT
 %token LBRACE RBRACE LPAREN RPAREN LBRACKET RBRACKET DOT COMMA SEMICOLON PLUS MINUS MULTIPLY DIVIDE AND OR LT GT EQ NOT
+%token <sval> IDENTIFIER STRING_CONSTANT INTEGER_CONSTANT
 
 %type <node> class classVarDecList subroutineDecList classVarDec classVarType type
 %type <node> subroutineDec subroutineType returnType parameterList subroutineBody
@@ -45,16 +44,20 @@ extern int yylineno;
 %%
 program:
     expressions {
-        print_tree($1, 0); // Print the XML representation
-        free_tree($1);     // Free the tree memory
+        print_tree($1, 0);
+        free_tree($1);
     }
     | statements {
-        print_tree($1, 0); // Print the XML representation
-        free_tree($1);     // Free the tree memory
+        print_tree($1, 0);
+        free_tree($1);
+    }
+    | subroutineDec {
+        print_tree($1, 0);
+        free_tree($1);
     }
     | class {
-        print_tree($1, 0); // Print the XML representation
-        free_tree($1);     // Free the tree memory
+        print_tree($1, 0);
+        free_tree($1);
     }
 ;
 
@@ -130,13 +133,13 @@ type:
 subroutineDec:
     subroutineType returnType subroutineName LPAREN parameterList RPAREN subroutineBody {
         $$ = create_node("subroutineDec", NULL);
-        add_child($$, $1);  // subroutineType: 'constructor', 'function', or 'method'
-        add_child($$, $2);  // returnType: 'void' or type
-        add_child($$, $3);  // subroutineName
-        add_child($$, create_node("symbol", "("));  // LPAREN
-        add_child($$, $5);  // parameterList
-        add_child($$, create_node("symbol", ")"));  // RPAREN
-        add_child($$, $7);  // subroutineBody
+        add_child($$, $1);
+        add_child($$, $2);
+        add_child($$, $3);
+        add_child($$, create_node("symbol", "("));
+        add_child($$, $5);
+        add_child($$, create_node("symbol", ")"));
+        add_child($$, $7);
     }
 ;
 
@@ -159,24 +162,24 @@ returnType:
         $$ = create_node("keyword", "void");
     }
     | type {
-        $$ = $1;  // Pass the type node directly
+        $$ = $1;
     }
 ;
 
 parameterList:
-    /* Empty (epsilon) */ {
-        $$ = create_node("parameterList", NULL);         // Empty parameter list
+    /* Empty */ {
+        $$ = create_node("parameterList", NULL);
     }
     | type varName {
         $$ = create_node("parameterList", NULL);
-        add_child($$, $1);                               // type
-        add_child($$, $2);                               // varName
+        add_child($$, $1);
+        add_child($$, $2);
     }
     | parameterList COMMA type varName {
         $$ = $1;
-        add_child($$, create_node("symbol", ","));       // COMMA
-        add_child($$, $3);                               // type
-        add_child($$, $4);                               // varName
+        add_child($$, create_node("symbol", ","));
+        add_child($$, $3);
+        add_child($$, $4);
     }
 ;
 
@@ -249,8 +252,7 @@ statements:
 
 /* middle node */
 statementList:
-    /* Empty (epsilon) */
-    {
+    /* Empty */ {
         $$ = create_node("statements", NULL);
     }
     | statementList statement {
@@ -281,20 +283,20 @@ letStatement:
     LET varName EQ expression SEMICOLON {
         $$ = create_node("letStatement", NULL);
         add_child($$, create_node("keyword", "let"));
-        add_child($$, $2); // varName
+        add_child($$, $2);
         add_child($$, create_node("symbol", "="));
-        add_child($$, $4); // expression
+        add_child($$, $4);
         add_child($$, create_node("symbol", ";"));
     }
     | LET varName LBRACKET expression RBRACKET EQ expression SEMICOLON {
         $$ = create_node("letStatement", NULL);
         add_child($$, create_node("keyword", "let"));
-        add_child($$, $2); // varName
+        add_child($$, $2);
         add_child($$, create_node("symbol", "["));
-        add_child($$, $4); // expression (index)
+        add_child($$, $4);
         add_child($$, create_node("symbol", "]"));
         add_child($$, create_node("symbol", "="));
-        add_child($$, $7); // expression
+        add_child($$, $7);
         add_child($$, create_node("symbol", ";"));
     }
 ;
@@ -304,24 +306,24 @@ ifStatement:
         $$ = create_node("ifStatement", NULL);
         add_child($$, create_node("keyword", "if"));
         add_child($$, create_node("symbol", "("));
-        add_child($$, $3); // expression
+        add_child($$, $3);
         add_child($$, create_node("symbol", ")"));
         add_child($$, create_node("symbol", "{"));
-        add_child($$, $6); // statements
+        add_child($$, $6);
         add_child($$, create_node("symbol", "}"));
     }
     | IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE {
         $$ = create_node("ifStatement", NULL);
         add_child($$, create_node("keyword", "if"));
         add_child($$, create_node("symbol", "("));
-        add_child($$, $3); // expression
+        add_child($$, $3);
         add_child($$, create_node("symbol", ")"));
         add_child($$, create_node("symbol", "{"));
-        add_child($$, $6); // if statements
+        add_child($$, $6);
         add_child($$, create_node("symbol", "}"));
         add_child($$, create_node("keyword", "else"));
         add_child($$, create_node("symbol", "{"));
-        add_child($$, $10); // else statements
+        add_child($$, $10);
         add_child($$, create_node("symbol", "}"));
     }
 ;
@@ -390,6 +392,10 @@ term:
         $$ = create_node("term", NULL);
         add_child($$, create_node("integerConstant", $1));
     }
+    | STRING_CONSTANT {
+        $$ = create_node("term", NULL);
+        add_child($$, create_node("stringConstant", $1));
+    }
     | keywordConstant {
         $$ = create_node("term", NULL);
         add_child($$, $1);
@@ -397,6 +403,13 @@ term:
     | varName {
         $$ = create_node("term", NULL);
         add_child($$, $1);
+    }
+    | varName LBRACKET expression RBRACKET {
+        $$ = create_node("term", NULL);
+        add_child($$, $1);
+        add_child($$, create_node("symbol", "["));
+        add_child($$, $3);
+        add_child($$, create_node("symbol", "]"));
     }
     | subroutineCall {
         $$ = create_node("term", NULL);
@@ -418,43 +431,43 @@ term:
 subroutineCall:
     subroutineName LPAREN expressionList RPAREN {
         $$ = create_node("subroutineCall", NULL);
-        add_child($$, $1);                              // subroutineName
-        add_child($$, create_node("symbol", "("));      // '('
-        add_child($$, $3);                              // expressionList
-        add_child($$, create_node("symbol", ")"));      // ')'
+        add_child($$, $1);
+        add_child($$, create_node("symbol", "("));
+        add_child($$, $3);
+        add_child($$, create_node("symbol", ")"));
     }
     | className DOT subroutineName LPAREN expressionList RPAREN {
         $$ = create_node("subroutineCall", NULL);
-        add_child($$, $1);                              // className
-        add_child($$, create_node("symbol", "."));      // '.'
-        add_child($$, $3);                              // subroutineName
-        add_child($$, create_node("symbol", "("));      // '('
-        add_child($$, $5);                              // expressionList
-        add_child($$, create_node("symbol", ")"));      // ')'
+        add_child($$, $1);
+        add_child($$, create_node("symbol", "."));
+        add_child($$, $3);
+        add_child($$, create_node("symbol", "("));
+        add_child($$, $5);
+        add_child($$, create_node("symbol", ")"));
     }
     | varName DOT subroutineName LPAREN expressionList RPAREN {
         $$ = create_node("subroutineCall", NULL);
-        add_child($$, $1);                              // varName
-        add_child($$, create_node("symbol", "."));      // '.'
-        add_child($$, $3);                              // subroutineName
-        add_child($$, create_node("symbol", "("));      // '('
-        add_child($$, $5);                              // expressionList
-        add_child($$, create_node("symbol", ")"));      // ')'
+        add_child($$, $1);
+        add_child($$, create_node("symbol", "."));
+        add_child($$, $3);
+        add_child($$, create_node("symbol", "("));
+        add_child($$, $5);
+        add_child($$, create_node("symbol", ")"));
     }
 ;
 
 expressionList:
-    {
+    /* Empty */ {
         $$ = create_node("expressionList", NULL);
     }
     | expression {
         $$ = create_node("expressionList", NULL);
-        add_child($$, $1); // 단일 expression 추가
+        add_child($$, $1);
     }
     | expressionList COMMA expression {
         $$ = $1;
-        add_child($$, create_node("symbol", ",")); // ','
-        add_child($$, $3);                         // expression
+        add_child($$, create_node("symbol", ","));
+        add_child($$, $3);
     }
 ;
 
