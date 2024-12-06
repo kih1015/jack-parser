@@ -36,34 +36,24 @@ extern int yylineno;
 %type <node> subroutineDec subroutineType returnType parameterList subroutineBody
 %type <node> varDec className subroutineName varDecList varName
 
-%type <node> statements statementList statement letStatement ifStatement whileStatement varNameList
+%type <node> statements statementList statement letStatement ifStatement whileStatement varNameList doStatement returnStatement
 
-%type <node> expressions expression term expressionList op unaryOp keywordConstant
+%type <node> expressions expression term subroutineCall expressionList op unaryOp keywordConstant
 
 %start program
 
 %%
 program:
     expressions {
-        printf("<program>\n");
-        print_tree($1, 1); // Print the XML representation
-        printf("</program>\n");
+        print_tree($1, 0); // Print the XML representation
         free_tree($1);     // Free the tree memory
     }
     | statements {
-        printf("<program>\n");
-        print_tree($1, 1); // Print the XML representation
-        printf("</program>\n");
+        print_tree($1, 0); // Print the XML representation
         free_tree($1);     // Free the tree memory
     }
     | class {
         print_tree($1, 0); // Print the XML representation
-        free_tree($1);     // Free the tree memory
-    }
-    | classVarDecList {
-        printf("<program>\n");
-        print_tree($1, 1); // Print the XML representation
-        printf("</program>\n");
         free_tree($1);     // Free the tree memory
     }
 ;
@@ -279,6 +269,12 @@ statement:
     | whileStatement {
         $$ = $1;
     }
+    | doStatement {
+        $$ = $1;
+    }
+    | returnStatement {
+        $$ = $1;
+    }
 ;
 
 letStatement:
@@ -343,6 +339,29 @@ whileStatement:
     }
 ;
 
+doStatement:
+    DO subroutineCall SEMICOLON {
+        $$ = create_node("doStatement", NULL);
+        add_child($$, create_node("keword", "do"));
+        take_children($$, $2);
+        add_child($$, create_node("symbol", ";"));
+    }
+;
+
+returnStatement:
+    RETURN SEMICOLON {
+        $$ = create_node("returnStatement", NULL);
+        add_child($$, create_node("keword", "return"));
+        add_child($$, create_node("symbol", ";"));
+    }
+    | RETURN expression SEMICOLON {
+        $$ = create_node("returnStatement", NULL);
+        add_child($$, create_node("keword", "return"));
+        add_child($$, $2);
+        add_child($$, create_node("symbol", ";"));
+    }
+;
+
 expressions:
     expression {
         $$ = create_node("expressions", NULL);
@@ -369,7 +388,7 @@ expression:
 term:
     INTEGER_CONSTANT {
         $$ = create_node("term", NULL);
-        add_child($$, create_node("integerConstant", strdup($1)));
+        add_child($$, create_node("integerConstant", $1));
     }
     | keywordConstant {
         $$ = create_node("term", NULL);
@@ -378,6 +397,10 @@ term:
     | varName {
         $$ = create_node("term", NULL);
         add_child($$, $1);
+    }
+    | subroutineCall {
+        $$ = create_node("term", NULL);
+        take_children($$, $1);
     }
     | LPAREN expression RPAREN {
         $$ = create_node("term", NULL);
@@ -421,7 +444,6 @@ subroutineCall:
 ;
 
 expressionList:
-    /* 빈 리스트 처리 */
     {
         $$ = create_node("expressionList", NULL);
     }
@@ -431,8 +453,8 @@ expressionList:
     }
     | expressionList COMMA expression {
         $$ = $1;
-        add_child($$, create_node("symbol", ",")); // ',' 추가
-        add_child($$, $3);                         // expression 추가
+        add_child($$, create_node("symbol", ",")); // ','
+        add_child($$, $3);                         // expression
     }
 ;
 
