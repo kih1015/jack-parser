@@ -1,7 +1,6 @@
 %option noyywrap
 
 %{
-//#include "JackAnalyzer.tab.h"
 #include <stdio.h>
 #include <stdlib.h>
 %}

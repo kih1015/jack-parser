@@ -1,0 +1,8 @@
+<tokens>
+<integerConstant> 0 </integerConstant>
+<integerConstant> 32767 </integerConstant>
+<integerConstant> 12345 </integerConstant>
+<stringConstant> Hello World </stringConstant>
+<stringConstant> Test String </stringConstant>
+<stringConstant> 123 </stringConstant>
+</tokens>

@@ -1,0 +1,19 @@
+// let 문
+let x = 3;
+let array[5] = 10;
+
+// if 문
+if (x > 0) {
+    let y = 2;
+}
+
+// while 문
+while (x > 0) {
+    let x = x - 1;
+}
+
+// do 문
+do Output.printInt(5);
+
+// return 문
+return x + y;
