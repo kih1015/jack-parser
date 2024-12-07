@@ -74,24 +74,35 @@
 #include <string.h>
 
 typedef struct TreeNode {
-    char *tag;                  // XML tag
-    char *value;                // Value (if leaf node)
-    struct TreeNode **children; // Array of child nodes
-    int child_count;            // Number of children
+    char *tag;                  // 태그 명
+    char *value;                // 태그 값 (터미널 노드)
+    struct TreeNode **children; // 자식노드 배열
+    int child_count;            // 자식노드 갯수
 } TreeNode;
 
+// 노드 생성
 TreeNode* create_node(const char *tag, const char *value);
+
+// 자식 추가
 void add_child(TreeNode *parent, TreeNode *child);
+
+// tree 출력
 void print_tree(TreeNode *node, int depth);
+
+// tree 메모리 해제
 void free_tree(TreeNode *node);
+
+// tree node 메모리 해제
 void free_node(TreeNode *node);
+
+// 자식 노드 흡수
 void take_children(TreeNode *master, TreeNode *slave);
 
 void yyerror(const char *s);
 int yylex();
 extern int yylineno;
 
-#line 95 "JackAnalyzer.tab.c"
+#line 106 "JackAnalyzer.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -590,15 +601,15 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,    46,    46,    50,    54,    58,    65,    78,    81,    89,
-      92,    99,   110,   113,   119,   122,   125,   128,   134,   148,
-     151,   154,   161,   164,   170,   173,   178,   187,   198,   201,
-     208,   218,   222,   230,   236,   242,   248,   255,   258,   265,
-     268,   271,   274,   277,   283,   291,   305,   315,   332,   345,
-     354,   359,   368,   372,   379,   383,   391,   395,   399,   403,
-     407,   414,   418,   424,   432,   439,   448,   460,   463,   467,
-     475,   478,   481,   484,   487,   490,   493,   496,   499,   505,
-     508,   514,   517,   520,   523
+       0,    86,    86,    91,    96,   101,   109,   122,   125,   133,
+     136,   144,   155,   158,   165,   168,   171,   174,   181,   195,
+     198,   201,   208,   211,   218,   221,   226,   236,   247,   250,
+     258,   268,   272,   281,   288,   295,   302,   309,   312,   320,
+     323,   326,   329,   332,   339,   347,   362,   372,   390,   404,
+     414,   419,   429,   433,   442,   447,   457,   462,   467,   472,
+     477,   485,   490,   497,   507,   515,   525,   538,   541,   545,
+     554,   557,   560,   563,   566,   569,   572,   575,   578,   585,
+     588,   594,   597,   600,   603
 };
 #endif
 
@@ -1280,43 +1291,43 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: expressions  */
-#line 46 "JackAnalyzer.y"
+#line 86 "JackAnalyzer.y"
                 {
         print_tree((yyvsp[0].node), 0);
         free_tree((yyvsp[0].node));
     }
-#line 1289 "JackAnalyzer.tab.c"
+#line 1300 "JackAnalyzer.tab.c"
     break;
 
   case 3: /* program: statements  */
-#line 50 "JackAnalyzer.y"
+#line 91 "JackAnalyzer.y"
                  {
         print_tree((yyvsp[0].node), 0);
         free_tree((yyvsp[0].node));
     }
-#line 1298 "JackAnalyzer.tab.c"
+#line 1309 "JackAnalyzer.tab.c"
     break;
 
   case 4: /* program: subroutineDecList  */
-#line 54 "JackAnalyzer.y"
+#line 96 "JackAnalyzer.y"
                         {
         print_tree((yyvsp[0].node), 0);
         free_tree((yyvsp[0].node));
     }
-#line 1307 "JackAnalyzer.tab.c"
+#line 1318 "JackAnalyzer.tab.c"
     break;
 
   case 5: /* program: class  */
-#line 58 "JackAnalyzer.y"
+#line 101 "JackAnalyzer.y"
             {
         print_tree((yyvsp[0].node), 0);
         free_tree((yyvsp[0].node));
     }
-#line 1316 "JackAnalyzer.tab.c"
+#line 1327 "JackAnalyzer.tab.c"
     break;
 
   case 6: /* class: CLASS className LBRACE classVarDecList subroutineDecList RBRACE  */
-#line 65 "JackAnalyzer.y"
+#line 109 "JackAnalyzer.y"
                                                                     {
         (yyval.node) = create_node("class", NULL);
         add_child((yyval.node), create_node("keyword", "class"));
@@ -1326,45 +1337,45 @@ yyreduce:
         take_children((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1330 "JackAnalyzer.tab.c"
+#line 1341 "JackAnalyzer.tab.c"
     break;
 
   case 7: /* classVarDecList: %empty  */
-#line 78 "JackAnalyzer.y"
+#line 122 "JackAnalyzer.y"
     {
         (yyval.node) = create_node("classVarDecList", NULL);
     }
-#line 1338 "JackAnalyzer.tab.c"
+#line 1349 "JackAnalyzer.tab.c"
     break;
 
   case 8: /* classVarDecList: classVarDecList classVarDec  */
-#line 81 "JackAnalyzer.y"
+#line 125 "JackAnalyzer.y"
                                   {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1347 "JackAnalyzer.tab.c"
+#line 1358 "JackAnalyzer.tab.c"
     break;
 
   case 9: /* subroutineDecList: %empty  */
-#line 89 "JackAnalyzer.y"
+#line 133 "JackAnalyzer.y"
     {
         (yyval.node) = create_node("subroutineDecList", NULL);
     }
-#line 1355 "JackAnalyzer.tab.c"
+#line 1366 "JackAnalyzer.tab.c"
     break;
 
   case 10: /* subroutineDecList: subroutineDecList subroutineDec  */
-#line 92 "JackAnalyzer.y"
+#line 136 "JackAnalyzer.y"
                                       {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1364 "JackAnalyzer.tab.c"
+#line 1375 "JackAnalyzer.tab.c"
     break;
 
   case 11: /* classVarDec: classVarType type varNameList SEMICOLON  */
-#line 99 "JackAnalyzer.y"
+#line 144 "JackAnalyzer.y"
                                             {
         (yyval.node) = create_node("classVarDec", NULL);
         add_child((yyval.node), (yyvsp[-3].node));
@@ -1372,59 +1383,59 @@ yyreduce:
         take_children((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1376 "JackAnalyzer.tab.c"
+#line 1387 "JackAnalyzer.tab.c"
     break;
 
   case 12: /* classVarType: STATIC  */
-#line 110 "JackAnalyzer.y"
+#line 155 "JackAnalyzer.y"
            {
         (yyval.node) = create_node("keyword", "static");
     }
-#line 1384 "JackAnalyzer.tab.c"
+#line 1395 "JackAnalyzer.tab.c"
     break;
 
   case 13: /* classVarType: FIELD  */
-#line 113 "JackAnalyzer.y"
+#line 158 "JackAnalyzer.y"
             {
         (yyval.node) = create_node("keyword", "field");
     }
-#line 1392 "JackAnalyzer.tab.c"
+#line 1403 "JackAnalyzer.tab.c"
     break;
 
   case 14: /* type: INT  */
-#line 119 "JackAnalyzer.y"
+#line 165 "JackAnalyzer.y"
         {
         (yyval.node) = create_node("keyword", "int");
     }
-#line 1400 "JackAnalyzer.tab.c"
+#line 1411 "JackAnalyzer.tab.c"
     break;
 
   case 15: /* type: CHAR  */
-#line 122 "JackAnalyzer.y"
+#line 168 "JackAnalyzer.y"
            {
         (yyval.node) = create_node("keyword", "char");
     }
-#line 1408 "JackAnalyzer.tab.c"
+#line 1419 "JackAnalyzer.tab.c"
     break;
 
   case 16: /* type: BOOLEAN  */
-#line 125 "JackAnalyzer.y"
+#line 171 "JackAnalyzer.y"
               {
         (yyval.node) = create_node("keyword", "boolean");
     }
-#line 1416 "JackAnalyzer.tab.c"
+#line 1427 "JackAnalyzer.tab.c"
     break;
 
   case 17: /* type: className  */
-#line 128 "JackAnalyzer.y"
+#line 174 "JackAnalyzer.y"
                 {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1424 "JackAnalyzer.tab.c"
+#line 1435 "JackAnalyzer.tab.c"
     break;
 
   case 18: /* subroutineDec: subroutineType returnType subroutineName LPAREN parameterList RPAREN subroutineBody  */
-#line 134 "JackAnalyzer.y"
+#line 181 "JackAnalyzer.y"
                                                                                         {
         (yyval.node) = create_node("subroutineDec", NULL);
         add_child((yyval.node), (yyvsp[-6].node));
@@ -1435,80 +1446,80 @@ yyreduce:
         add_child((yyval.node), create_node("symbol", ")"));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1439 "JackAnalyzer.tab.c"
+#line 1450 "JackAnalyzer.tab.c"
     break;
 
   case 19: /* subroutineType: CONSTRUCTOR  */
-#line 148 "JackAnalyzer.y"
+#line 195 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("keyword", "constructor");
     }
-#line 1447 "JackAnalyzer.tab.c"
+#line 1458 "JackAnalyzer.tab.c"
     break;
 
   case 20: /* subroutineType: FUNCTION  */
-#line 151 "JackAnalyzer.y"
+#line 198 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("keyword", "function");
     }
-#line 1455 "JackAnalyzer.tab.c"
+#line 1466 "JackAnalyzer.tab.c"
     break;
 
   case 21: /* subroutineType: METHOD  */
-#line 154 "JackAnalyzer.y"
+#line 201 "JackAnalyzer.y"
              {
         (yyval.node) = create_node("keyword", "method");
     }
-#line 1463 "JackAnalyzer.tab.c"
+#line 1474 "JackAnalyzer.tab.c"
     break;
 
   case 22: /* returnType: VOID  */
-#line 161 "JackAnalyzer.y"
+#line 208 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("keyword", "void");
     }
-#line 1471 "JackAnalyzer.tab.c"
+#line 1482 "JackAnalyzer.tab.c"
     break;
 
   case 23: /* returnType: type  */
-#line 164 "JackAnalyzer.y"
+#line 211 "JackAnalyzer.y"
            {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1479 "JackAnalyzer.tab.c"
+#line 1490 "JackAnalyzer.tab.c"
     break;
 
   case 24: /* parameterList: %empty  */
-#line 170 "JackAnalyzer.y"
+#line 218 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("parameterList", NULL);
     }
-#line 1487 "JackAnalyzer.tab.c"
+#line 1498 "JackAnalyzer.tab.c"
     break;
 
   case 25: /* parameterList: type varName  */
-#line 173 "JackAnalyzer.y"
+#line 221 "JackAnalyzer.y"
                    {
         (yyval.node) = create_node("parameterList", NULL);
-        add_child((yyval.node), (yyvsp[-1].node));
-        add_child((yyval.node), (yyvsp[0].node));
-    }
-#line 1497 "JackAnalyzer.tab.c"
-    break;
-
-  case 26: /* parameterList: parameterList COMMA type varName  */
-#line 178 "JackAnalyzer.y"
-                                       {
-        (yyval.node) = (yyvsp[-3].node);
-        add_child((yyval.node), create_node("symbol", ","));
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), (yyvsp[0].node));
     }
 #line 1508 "JackAnalyzer.tab.c"
     break;
 
+  case 26: /* parameterList: parameterList COMMA type varName  */
+#line 226 "JackAnalyzer.y"
+                                       {
+        (yyval.node) = (yyvsp[-3].node);
+        add_child((yyval.node), create_node("symbol", ","));
+        add_child((yyval.node), (yyvsp[-1].node));
+        add_child((yyval.node), (yyvsp[0].node));
+    }
+#line 1519 "JackAnalyzer.tab.c"
+    break;
+
   case 27: /* subroutineBody: LBRACE varDecList statements RBRACE  */
-#line 187 "JackAnalyzer.y"
+#line 236 "JackAnalyzer.y"
                                         {
         (yyval.node) = create_node("subroutineBody", NULL);
         add_child((yyval.node), create_node("symbol", "{"));
@@ -1516,147 +1527,147 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node)); // statements
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1520 "JackAnalyzer.tab.c"
+#line 1531 "JackAnalyzer.tab.c"
     break;
 
   case 28: /* varDecList: %empty  */
-#line 198 "JackAnalyzer.y"
+#line 247 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("varDecList", NULL);
     }
-#line 1528 "JackAnalyzer.tab.c"
+#line 1539 "JackAnalyzer.tab.c"
     break;
 
   case 29: /* varDecList: varDecList varDec  */
-#line 201 "JackAnalyzer.y"
+#line 250 "JackAnalyzer.y"
                         {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1537 "JackAnalyzer.tab.c"
+#line 1548 "JackAnalyzer.tab.c"
     break;
 
   case 30: /* varDec: VAR varNameList SEMICOLON  */
-#line 208 "JackAnalyzer.y"
+#line 258 "JackAnalyzer.y"
                               {
         (yyval.node) = create_node("varDec", NULL);
         add_child((yyval.node), create_node("keyword", "var"));
         take_children((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1548 "JackAnalyzer.tab.c"
+#line 1559 "JackAnalyzer.tab.c"
     break;
 
   case 31: /* varNameList: varName  */
-#line 218 "JackAnalyzer.y"
+#line 268 "JackAnalyzer.y"
             {
         (yyval.node) = create_node("varNameList", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1557 "JackAnalyzer.tab.c"
+#line 1568 "JackAnalyzer.tab.c"
     break;
 
   case 32: /* varNameList: varNameList COMMA varName  */
-#line 222 "JackAnalyzer.y"
+#line 272 "JackAnalyzer.y"
                                 {
         (yyval.node) = (yyvsp[-2].node);
         add_child((yyval.node), create_node("symbol", ","));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1567 "JackAnalyzer.tab.c"
+#line 1578 "JackAnalyzer.tab.c"
     break;
 
   case 33: /* className: IDENTIFIER  */
-#line 230 "JackAnalyzer.y"
+#line 281 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("identifier", (yyvsp[0].sval));
     }
-#line 1575 "JackAnalyzer.tab.c"
+#line 1586 "JackAnalyzer.tab.c"
     break;
 
   case 34: /* subroutineName: IDENTIFIER  */
-#line 236 "JackAnalyzer.y"
+#line 288 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("identifier", (yyvsp[0].sval));
     }
-#line 1583 "JackAnalyzer.tab.c"
+#line 1594 "JackAnalyzer.tab.c"
     break;
 
   case 35: /* varName: IDENTIFIER  */
-#line 242 "JackAnalyzer.y"
+#line 295 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("identifier", (yyvsp[0].sval));
     }
-#line 1591 "JackAnalyzer.tab.c"
+#line 1602 "JackAnalyzer.tab.c"
     break;
 
   case 36: /* statements: statementList  */
-#line 248 "JackAnalyzer.y"
+#line 302 "JackAnalyzer.y"
                   {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1599 "JackAnalyzer.tab.c"
+#line 1610 "JackAnalyzer.tab.c"
     break;
 
   case 37: /* statementList: %empty  */
-#line 255 "JackAnalyzer.y"
+#line 309 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("statements", NULL);
     }
-#line 1607 "JackAnalyzer.tab.c"
+#line 1618 "JackAnalyzer.tab.c"
     break;
 
   case 38: /* statementList: statementList statement  */
-#line 258 "JackAnalyzer.y"
+#line 312 "JackAnalyzer.y"
                               {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1616 "JackAnalyzer.tab.c"
+#line 1627 "JackAnalyzer.tab.c"
     break;
 
   case 39: /* statement: letStatement  */
-#line 265 "JackAnalyzer.y"
+#line 320 "JackAnalyzer.y"
                  {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1624 "JackAnalyzer.tab.c"
+#line 1635 "JackAnalyzer.tab.c"
     break;
 
   case 40: /* statement: ifStatement  */
-#line 268 "JackAnalyzer.y"
+#line 323 "JackAnalyzer.y"
                   {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1632 "JackAnalyzer.tab.c"
+#line 1643 "JackAnalyzer.tab.c"
     break;
 
   case 41: /* statement: whileStatement  */
-#line 271 "JackAnalyzer.y"
+#line 326 "JackAnalyzer.y"
                      {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1640 "JackAnalyzer.tab.c"
+#line 1651 "JackAnalyzer.tab.c"
     break;
 
   case 42: /* statement: doStatement  */
-#line 274 "JackAnalyzer.y"
+#line 329 "JackAnalyzer.y"
                   {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1648 "JackAnalyzer.tab.c"
+#line 1659 "JackAnalyzer.tab.c"
     break;
 
   case 43: /* statement: returnStatement  */
-#line 277 "JackAnalyzer.y"
+#line 332 "JackAnalyzer.y"
                       {
         (yyval.node) = (yyvsp[0].node);
     }
-#line 1656 "JackAnalyzer.tab.c"
+#line 1667 "JackAnalyzer.tab.c"
     break;
 
   case 44: /* letStatement: LET varName EQ expression SEMICOLON  */
-#line 283 "JackAnalyzer.y"
+#line 339 "JackAnalyzer.y"
                                         {
         (yyval.node) = create_node("letStatement", NULL);
         add_child((yyval.node), create_node("keyword", "let"));
@@ -1665,11 +1676,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1669 "JackAnalyzer.tab.c"
+#line 1680 "JackAnalyzer.tab.c"
     break;
 
   case 45: /* letStatement: LET varName LBRACKET expression RBRACKET EQ expression SEMICOLON  */
-#line 291 "JackAnalyzer.y"
+#line 347 "JackAnalyzer.y"
                                                                        {
         (yyval.node) = create_node("letStatement", NULL);
         add_child((yyval.node), create_node("keyword", "let"));
@@ -1681,11 +1692,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1685 "JackAnalyzer.tab.c"
+#line 1696 "JackAnalyzer.tab.c"
     break;
 
   case 46: /* ifStatement: IF LPAREN expression RPAREN LBRACE statements RBRACE  */
-#line 305 "JackAnalyzer.y"
+#line 362 "JackAnalyzer.y"
                                                          {
         (yyval.node) = create_node("ifStatement", NULL);
         add_child((yyval.node), create_node("keyword", "if"));
@@ -1696,11 +1707,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1700 "JackAnalyzer.tab.c"
+#line 1711 "JackAnalyzer.tab.c"
     break;
 
   case 47: /* ifStatement: IF LPAREN expression RPAREN LBRACE statements RBRACE ELSE LBRACE statements RBRACE  */
-#line 315 "JackAnalyzer.y"
+#line 372 "JackAnalyzer.y"
                                                                                          {
         (yyval.node) = create_node("ifStatement", NULL);
         add_child((yyval.node), create_node("keyword", "if"));
@@ -1715,11 +1726,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1719 "JackAnalyzer.tab.c"
+#line 1730 "JackAnalyzer.tab.c"
     break;
 
   case 48: /* whileStatement: WHILE LPAREN expression RPAREN LBRACE statements RBRACE  */
-#line 332 "JackAnalyzer.y"
+#line 390 "JackAnalyzer.y"
                                                             {
         (yyval.node) = create_node("whileStatement", NULL);
         add_child((yyval.node), create_node("keyword", "while"));
@@ -1730,116 +1741,116 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "}"));
     }
-#line 1734 "JackAnalyzer.tab.c"
+#line 1745 "JackAnalyzer.tab.c"
     break;
 
   case 49: /* doStatement: DO subroutineCall SEMICOLON  */
-#line 345 "JackAnalyzer.y"
+#line 404 "JackAnalyzer.y"
                                 {
         (yyval.node) = create_node("doStatement", NULL);
         add_child((yyval.node), create_node("keyword", "do"));
         take_children((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1745 "JackAnalyzer.tab.c"
+#line 1756 "JackAnalyzer.tab.c"
     break;
 
   case 50: /* returnStatement: RETURN SEMICOLON  */
-#line 354 "JackAnalyzer.y"
+#line 414 "JackAnalyzer.y"
                      {
         (yyval.node) = create_node("returnStatement", NULL);
         add_child((yyval.node), create_node("keyword", "return"));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1755 "JackAnalyzer.tab.c"
+#line 1766 "JackAnalyzer.tab.c"
     break;
 
   case 51: /* returnStatement: RETURN expression SEMICOLON  */
-#line 359 "JackAnalyzer.y"
+#line 419 "JackAnalyzer.y"
                                   {
         (yyval.node) = create_node("returnStatement", NULL);
         add_child((yyval.node), create_node("keyword", "return"));
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ";"));
     }
-#line 1766 "JackAnalyzer.tab.c"
+#line 1777 "JackAnalyzer.tab.c"
     break;
 
   case 52: /* expressions: expression  */
-#line 368 "JackAnalyzer.y"
+#line 429 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("expressions", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1775 "JackAnalyzer.tab.c"
+#line 1786 "JackAnalyzer.tab.c"
     break;
 
   case 53: /* expressions: expressions expression  */
-#line 372 "JackAnalyzer.y"
+#line 433 "JackAnalyzer.y"
                              {
         (yyval.node) = (yyvsp[-1].node);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1784 "JackAnalyzer.tab.c"
+#line 1795 "JackAnalyzer.tab.c"
     break;
 
   case 54: /* expression: term  */
-#line 379 "JackAnalyzer.y"
+#line 442 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("expression", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1793 "JackAnalyzer.tab.c"
+#line 1804 "JackAnalyzer.tab.c"
     break;
 
   case 55: /* expression: expression op term  */
-#line 383 "JackAnalyzer.y"
+#line 447 "JackAnalyzer.y"
                          {
         (yyval.node) = (yyvsp[-2].node);
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1803 "JackAnalyzer.tab.c"
+#line 1814 "JackAnalyzer.tab.c"
     break;
 
   case 56: /* term: INTEGER_CONSTANT  */
-#line 391 "JackAnalyzer.y"
+#line 457 "JackAnalyzer.y"
                      {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), create_node("integerConstant", (yyvsp[0].sval)));
     }
-#line 1812 "JackAnalyzer.tab.c"
+#line 1823 "JackAnalyzer.tab.c"
     break;
 
   case 57: /* term: STRING_CONSTANT  */
-#line 395 "JackAnalyzer.y"
+#line 462 "JackAnalyzer.y"
                       {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), create_node("stringConstant", (yyvsp[0].sval)));
     }
-#line 1821 "JackAnalyzer.tab.c"
+#line 1832 "JackAnalyzer.tab.c"
     break;
 
   case 58: /* term: keywordConstant  */
-#line 399 "JackAnalyzer.y"
+#line 467 "JackAnalyzer.y"
                       {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1830 "JackAnalyzer.tab.c"
+#line 1841 "JackAnalyzer.tab.c"
     break;
 
   case 59: /* term: varName  */
-#line 403 "JackAnalyzer.y"
+#line 472 "JackAnalyzer.y"
               {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1839 "JackAnalyzer.tab.c"
+#line 1850 "JackAnalyzer.tab.c"
     break;
 
   case 60: /* term: varName LBRACKET expression RBRACKET  */
-#line 407 "JackAnalyzer.y"
+#line 477 "JackAnalyzer.y"
                                            {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), (yyvsp[-3].node));
@@ -1847,41 +1858,41 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", "]"));
     }
-#line 1851 "JackAnalyzer.tab.c"
+#line 1862 "JackAnalyzer.tab.c"
     break;
 
   case 61: /* term: subroutineCall  */
-#line 414 "JackAnalyzer.y"
+#line 485 "JackAnalyzer.y"
                      {
         (yyval.node) = create_node("term", NULL);
         take_children((yyval.node), (yyvsp[0].node));
     }
-#line 1860 "JackAnalyzer.tab.c"
+#line 1871 "JackAnalyzer.tab.c"
     break;
 
   case 62: /* term: LPAREN expression RPAREN  */
-#line 418 "JackAnalyzer.y"
+#line 490 "JackAnalyzer.y"
                                {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), create_node("symbol", "("));
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ")"));
     }
-#line 1871 "JackAnalyzer.tab.c"
+#line 1882 "JackAnalyzer.tab.c"
     break;
 
   case 63: /* term: unaryOp term  */
-#line 424 "JackAnalyzer.y"
+#line 497 "JackAnalyzer.y"
                    {
         (yyval.node) = create_node("term", NULL);
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1881 "JackAnalyzer.tab.c"
+#line 1892 "JackAnalyzer.tab.c"
     break;
 
   case 64: /* subroutineCall: subroutineName LPAREN expressionList RPAREN  */
-#line 432 "JackAnalyzer.y"
+#line 507 "JackAnalyzer.y"
                                                 {
         (yyval.node) = create_node("subroutineCall", NULL);
         add_child((yyval.node), (yyvsp[-3].node));
@@ -1889,11 +1900,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ")"));
     }
-#line 1893 "JackAnalyzer.tab.c"
+#line 1904 "JackAnalyzer.tab.c"
     break;
 
   case 65: /* subroutineCall: className DOT subroutineName LPAREN expressionList RPAREN  */
-#line 439 "JackAnalyzer.y"
+#line 515 "JackAnalyzer.y"
                                                                 {
         (yyval.node) = create_node("subroutineCall", NULL);
         add_child((yyval.node), (yyvsp[-5].node));
@@ -1903,11 +1914,11 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ")"));
     }
-#line 1907 "JackAnalyzer.tab.c"
+#line 1918 "JackAnalyzer.tab.c"
     break;
 
   case 66: /* subroutineCall: varName DOT subroutineName LPAREN expressionList RPAREN  */
-#line 448 "JackAnalyzer.y"
+#line 525 "JackAnalyzer.y"
                                                               {
         (yyval.node) = create_node("subroutineCall", NULL);
         add_child((yyval.node), (yyvsp[-5].node));
@@ -1917,158 +1928,158 @@ yyreduce:
         add_child((yyval.node), (yyvsp[-1].node));
         add_child((yyval.node), create_node("symbol", ")"));
     }
-#line 1921 "JackAnalyzer.tab.c"
+#line 1932 "JackAnalyzer.tab.c"
     break;
 
   case 67: /* expressionList: %empty  */
-#line 460 "JackAnalyzer.y"
+#line 538 "JackAnalyzer.y"
                 {
         (yyval.node) = create_node("expressionList", NULL);
     }
-#line 1929 "JackAnalyzer.tab.c"
+#line 1940 "JackAnalyzer.tab.c"
     break;
 
   case 68: /* expressionList: expression  */
-#line 463 "JackAnalyzer.y"
+#line 541 "JackAnalyzer.y"
                  {
         (yyval.node) = create_node("expressionList", NULL);
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1938 "JackAnalyzer.tab.c"
+#line 1949 "JackAnalyzer.tab.c"
     break;
 
   case 69: /* expressionList: expressionList COMMA expression  */
-#line 467 "JackAnalyzer.y"
+#line 545 "JackAnalyzer.y"
                                       {
         (yyval.node) = (yyvsp[-2].node);
         add_child((yyval.node), create_node("symbol", ","));
         add_child((yyval.node), (yyvsp[0].node));
     }
-#line 1948 "JackAnalyzer.tab.c"
+#line 1959 "JackAnalyzer.tab.c"
     break;
 
   case 70: /* op: PLUS  */
-#line 475 "JackAnalyzer.y"
+#line 554 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("symbol", "+");       
     }
-#line 1956 "JackAnalyzer.tab.c"
+#line 1967 "JackAnalyzer.tab.c"
     break;
 
   case 71: /* op: MINUS  */
-#line 478 "JackAnalyzer.y"
+#line 557 "JackAnalyzer.y"
             {
         (yyval.node) = create_node("symbol", "-"); 
     }
-#line 1964 "JackAnalyzer.tab.c"
+#line 1975 "JackAnalyzer.tab.c"
     break;
 
   case 72: /* op: MULTIPLY  */
-#line 481 "JackAnalyzer.y"
+#line 560 "JackAnalyzer.y"
                {
         (yyval.node) = create_node("symbol", "*");    
     }
-#line 1972 "JackAnalyzer.tab.c"
+#line 1983 "JackAnalyzer.tab.c"
     break;
 
   case 73: /* op: DIVIDE  */
-#line 484 "JackAnalyzer.y"
+#line 563 "JackAnalyzer.y"
              {
         (yyval.node) = create_node("symbol", "/");
     }
-#line 1980 "JackAnalyzer.tab.c"
+#line 1991 "JackAnalyzer.tab.c"
     break;
 
   case 74: /* op: AND  */
-#line 487 "JackAnalyzer.y"
+#line 566 "JackAnalyzer.y"
           {
         (yyval.node) = create_node("symbol", "&amp;");
     }
-#line 1988 "JackAnalyzer.tab.c"
+#line 1999 "JackAnalyzer.tab.c"
     break;
 
   case 75: /* op: OR  */
-#line 490 "JackAnalyzer.y"
+#line 569 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("symbol", "|");
     }
-#line 1996 "JackAnalyzer.tab.c"
+#line 2007 "JackAnalyzer.tab.c"
     break;
 
   case 76: /* op: LT  */
-#line 493 "JackAnalyzer.y"
+#line 572 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("symbol", "&lt;");
     }
-#line 2004 "JackAnalyzer.tab.c"
+#line 2015 "JackAnalyzer.tab.c"
     break;
 
   case 77: /* op: GT  */
-#line 496 "JackAnalyzer.y"
+#line 575 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("symbol", "&gt;");
     }
-#line 2012 "JackAnalyzer.tab.c"
+#line 2023 "JackAnalyzer.tab.c"
     break;
 
   case 78: /* op: EQ  */
-#line 499 "JackAnalyzer.y"
+#line 578 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("symbol", "=");
     }
-#line 2020 "JackAnalyzer.tab.c"
+#line 2031 "JackAnalyzer.tab.c"
     break;
 
   case 79: /* unaryOp: MINUS  */
-#line 505 "JackAnalyzer.y"
+#line 585 "JackAnalyzer.y"
           {
         (yyval.node) = create_node("symbol", "-");
     }
-#line 2028 "JackAnalyzer.tab.c"
+#line 2039 "JackAnalyzer.tab.c"
     break;
 
   case 80: /* unaryOp: NOT  */
-#line 508 "JackAnalyzer.y"
+#line 588 "JackAnalyzer.y"
           {
         (yyval.node) = create_node("symbol", "~");
     }
-#line 2036 "JackAnalyzer.tab.c"
+#line 2047 "JackAnalyzer.tab.c"
     break;
 
   case 81: /* keywordConstant: TRUE  */
-#line 514 "JackAnalyzer.y"
+#line 594 "JackAnalyzer.y"
          {
         (yyval.node) = create_node("keyword", "true");
     }
-#line 2044 "JackAnalyzer.tab.c"
+#line 2055 "JackAnalyzer.tab.c"
     break;
 
   case 82: /* keywordConstant: FALSE  */
-#line 517 "JackAnalyzer.y"
+#line 597 "JackAnalyzer.y"
             {
         (yyval.node) = create_node("keyword", "false");
     }
-#line 2052 "JackAnalyzer.tab.c"
+#line 2063 "JackAnalyzer.tab.c"
     break;
 
   case 83: /* keywordConstant: TK_NULL  */
-#line 520 "JackAnalyzer.y"
+#line 600 "JackAnalyzer.y"
               {
         (yyval.node) = create_node("keyword", "null");
     }
-#line 2060 "JackAnalyzer.tab.c"
+#line 2071 "JackAnalyzer.tab.c"
     break;
 
   case 84: /* keywordConstant: THIS  */
-#line 523 "JackAnalyzer.y"
+#line 603 "JackAnalyzer.y"
            {
         (yyval.node) = create_node("keyword", "this");
     }
-#line 2068 "JackAnalyzer.tab.c"
+#line 2079 "JackAnalyzer.tab.c"
     break;
 
 
-#line 2072 "JackAnalyzer.tab.c"
+#line 2083 "JackAnalyzer.tab.c"
 
       default: break;
     }
@@ -2261,8 +2272,9 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 528 "JackAnalyzer.y"
+#line 608 "JackAnalyzer.y"
 
+// 노드 생성 구현
 TreeNode* create_node(const char *tag, const char *value) {
     TreeNode *node = (TreeNode *)malloc(sizeof(TreeNode));
     node->tag = strdup(tag);
@@ -2272,11 +2284,13 @@ TreeNode* create_node(const char *tag, const char *value) {
     return node;
 }
 
+// 자식 노드 추가 구현
 void add_child(TreeNode *parent, TreeNode *child) {
     parent->children = realloc(parent->children, sizeof(TreeNode *) * (parent->child_count + 1));
     parent->children[parent->child_count++] = child;
 }
 
+// 트리 출력 구현
 void print_tree(TreeNode *node, int depth) {
     for (int i = 0; i < depth; i++) printf("  ");
     printf("<%s>", node->tag);
@@ -2293,6 +2307,7 @@ void print_tree(TreeNode *node, int depth) {
     }  
 }
 
+// 트리 메모리 해제 구현
 void free_tree(TreeNode *node) {
     if (!node) return;
     free(node->tag);
@@ -2304,6 +2319,7 @@ void free_tree(TreeNode *node) {
     free(node);
 }
 
+// 트리 노드 메모리 해제 구현
 void free_node(TreeNode *node) {
     if (!node) return;
     free(node->tag);
@@ -2312,6 +2328,7 @@ void free_node(TreeNode *node) {
     free(node);
 }
 
+// 자식 노드 흡수 구현
 void take_children(TreeNode *master, TreeNode *slave) {
     if (!master) return;
     if (!slave) return;
@@ -2320,10 +2337,12 @@ void take_children(TreeNode *master, TreeNode *slave) {
     free_node(slave);
 }
 
+// 디버깅
 void yyerror(const char *s) {
     fprintf(stderr, "Error: %s at line %d\n", s, yylineno);
 }
 
+// 진입점
 int main(int argc, char **argv) {
     if (yyparse() != 0) printf("Parsing failed!\n");
     return 0;

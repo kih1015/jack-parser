@@ -8,29 +8,33 @@
 
 %%
 
-"class"         { return CLASS; }
+"class"         { return CLASS; } // 클래스/서브루틴: class, constructor, function, method
 "constructor"   { return CONSTRUCTOR; }
 "function"      { return FUNCTION; }
 "method"        { return METHOD; }
-"field"         { return FIELD; }
+
+"field"         { return FIELD; } // 변수 선언: field, static, var
 "static"        { return STATIC; }
 "var"           { return VAR; }
-"int"           { return INT; }
+
+"int"           { return INT; } // 자료형: int, char, boolean, void
 "char"          { return CHAR; }
 "boolean"       { return BOOLEAN; }
 "void"          { return VOID; }
-"true"          { return TRUE; }
+
+"true"          { return TRUE; } // 상수: true, false, null, this
 "false"         { return FALSE; }
 "null"          { return TK_NULL; }
 "this"          { return THIS; }
-"let"           { return LET; }
+
+"let"           { return LET; } // 진술문: let, do, if, else, while, return
 "do"            { return DO; }
 "if"            { return IF; }
 "else"          { return ELSE; }
 "while"         { return WHILE; }
 "return"        { return RETURN; }
 
-"{"             { return LBRACE; }
+"{"             { return LBRACE; } // 구분자: ‘{’, ‘}’, ‘(’, ‘)’, ‘[’, ‘]’, ‘.’, ‘,’, ‘;’
 "}"             { return RBRACE; }
 "("             { return LPAREN; }
 ")"             { return RPAREN; }
@@ -39,7 +43,8 @@
 "."             { return DOT; }
 ","             { return COMMA; }
 ";"             { return SEMICOLON; }
-"+"             { return PLUS; }
+
+"+"             { return PLUS; } // 연산자: ‘+’, ‘-’, ‘*’, ‘/’, ‘&’, ‘|’, ‘<’, ‘>’, ‘=’, ‘~’
 "-"             { return MINUS; }
 "*"             { return MULTIPLY; }
 "/"             { return DIVIDE; }
@@ -49,9 +54,14 @@
 ">"             { return GT; }
 "="             { return EQ; }
 "~"             { return NOT; }
-[0-9]+          { 
-                    int value = atoi(yytext);
-                    if (value >= 0 && value <= 32767) {
+
+\/\*([^*]|\*+[^*/])*\*+\/     {} // 블록 주석 무시
+"//".*                        {} // 한 줄 주석 무시
+[ \t\n\r]+                    {} // 공백 무시
+
+[0-9]+          { // 정수: 0 ~ 32767 범위의 값 
+                    int value = atoi(yytext); // 정수로 변환
+                    if (value >= 0 && value <= 32767) { // 범위 체크
                         yylval.sval = strdup(yytext);
                         return INTEGER_CONSTANT;
                     } else {
@@ -60,10 +70,10 @@
                     }
                 }
 
-\"[^\"]*\"      { 
-                    yylval.sval = strdup(yytext);
-                    yylval.sval[strlen(yylval.sval) - 1] = '\0';
-                    yylval.sval = yylval.sval + 1;
+\"[^\"]*\"      { // 문자열: 큰 따옴표(“”)로 둘러싸인 문자열
+                    yylval.sval = strdup(yytext); // 따옴표 제거
+                    yylval.sval[strlen(yylval.sval) - 1] = '\0'; // 따옴표 제거
+                    yylval.sval = yylval.sval + 1; // 따옴표 제거
                     return STRING_CONSTANT; 
                 }
 
@@ -71,10 +81,6 @@
                             yylval.sval = strdup(yytext);
                             return IDENTIFIER;
                         }
-
-\/\*([^*]|\*+[^*/])*\*+\/     {}
-"//".*                        {}
-[ \t\n\r]+                    {}
 
 .               {
                     printf("Error: Integer out of range: %s\n", yytext);

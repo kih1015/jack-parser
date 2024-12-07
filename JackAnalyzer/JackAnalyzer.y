@@ -4,17 +4,28 @@
 #include <string.h>
 
 typedef struct TreeNode {
-    char *tag;                  // XML tag
-    char *value;                // Value (if leaf node)
-    struct TreeNode **children; // Array of child nodes
-    int child_count;            // Number of children
+    char *tag;                  // 태그 명
+    char *value;                // 태그 값 (터미널 노드)
+    struct TreeNode **children; // 자식노드 배열
+    int child_count;            // 자식노드 갯수
 } TreeNode;
 
+// 노드 생성
 TreeNode* create_node(const char *tag, const char *value);
+
+// 자식 추가
 void add_child(TreeNode *parent, TreeNode *child);
+
+// tree 출력
 void print_tree(TreeNode *node, int depth);
+
+// tree 메모리 해제
 void free_tree(TreeNode *node);
+
+// tree node 메모리 해제
 void free_node(TreeNode *node);
+
+// 자식 노드 흡수
 void take_children(TreeNode *master, TreeNode *slave);
 
 void yyerror(const char *s);
@@ -27,40 +38,73 @@ extern int yylineno;
     char *sval;
 }
 
-%token CLASS CONSTRUCTOR FUNCTION METHOD FIELD STATIC VAR INT CHAR BOOLEAN VOID TRUE FALSE TK_NULL THIS LET DO IF ELSE WHILE RETURN
-%token LBRACE RBRACE LPAREN RPAREN LBRACKET RBRACKET DOT COMMA SEMICOLON PLUS MINUS MULTIPLY DIVIDE AND OR LT GT EQ NOT
+// 클래스/서브루틴
+%token CLASS CONSTRUCTOR FUNCTION METHOD 
+
+// 변수 선언
+%token FIELD STATIC VAR
+
+// 자료형
+%token INT CHAR BOOLEAN VOID
+
+// 상수
+%token TRUE FALSE TK_NULL THIS 
+
+// 진술문
+%token LET DO IF ELSE WHILE RETURN
+
+// 심볼: 구분자
+%token LBRACE RBRACE LPAREN RPAREN LBRACKET RBRACKET DOT COMMA SEMICOLON 
+
+// 심볼: 연산자
+%token PLUS MINUS MULTIPLY DIVIDE AND OR LT GT EQ NOT
+
+// 식별자, 문자열상수, 정수상수
 %token <sval> IDENTIFIER STRING_CONSTANT INTEGER_CONSTANT
 
-%type <node> class classVarDecList subroutineDecList classVarDec classVarType type
+// 클래스 선언
+%type <node> class classVarDecList subroutineDecList
+
+// 클래스 변수 선언
+%type <node> classVarDec classVarType type
+
+// 서브루틴 선언
 %type <node> subroutineDec subroutineType returnType parameterList subroutineBody
-%type <node> varDec className subroutineName varDecList varName
+%type <node> varDec className subroutineName varDecList varName varNameList
 
-%type <node> statements statementList statement letStatement ifStatement whileStatement varNameList doStatement returnStatement
+// 진술문
+%type <node> statements statementList statement letStatement ifStatement whileStatement doStatement returnStatement 
 
+// 표현식
 %type <node> expressions expression term subroutineCall expressionList op unaryOp keywordConstant
 
 %start program
 
 %%
 program:
+    // 표현식만 출력 for test
     expressions {
         print_tree($1, 0);
         free_tree($1);
     }
+    // 진술문만 출력 for test
     | statements {
         print_tree($1, 0);
         free_tree($1);
     }
+    // 서브루틴만 출력 for test
     | subroutineDecList {
         print_tree($1, 0);
         free_tree($1);
     }
+    // 클래스 (program structure)
     | class {
         print_tree($1, 0);
         free_tree($1);
     }
 ;
 
+// 클래스 선언 (class)
 class:
     CLASS className LBRACE classVarDecList subroutineDecList RBRACE {
         $$ = create_node("class", NULL);
@@ -73,7 +117,7 @@ class:
     }
 ;
 
-/* middle node */
+// for classVarDec*
 classVarDecList:
     {
         $$ = create_node("classVarDecList", NULL);
@@ -84,7 +128,7 @@ classVarDecList:
     }
 ;
 
-/* middle node */
+// for subroutineDec*
 subroutineDecList:
     {
         $$ = create_node("subroutineDecList", NULL);
@@ -95,6 +139,7 @@ subroutineDecList:
     }
 ;
 
+// 클래스 변수 선언 (class VarDec)
 classVarDec:
     classVarType type varNameList SEMICOLON {
         $$ = create_node("classVarDec", NULL);
@@ -105,7 +150,7 @@ classVarDec:
     }
 ;
 
-/* middle node */
+// for 클래스 변수 타입
 classVarType:
     STATIC {
         $$ = create_node("keyword", "static");
@@ -115,6 +160,7 @@ classVarType:
     }
 ;
 
+// 자료형
 type:
     INT {
         $$ = create_node("keyword", "int");
@@ -130,6 +176,7 @@ type:
     }
 ;
 
+// 서브루틴 선언 (subroutineDec)
 subroutineDec:
     subroutineType returnType subroutineName LPAREN parameterList RPAREN subroutineBody {
         $$ = create_node("subroutineDec", NULL);
@@ -143,7 +190,7 @@ subroutineDec:
     }
 ;
 
-/* middle node */
+// for 서브루틴 타입
 subroutineType:
     CONSTRUCTOR {
         $$ = create_node("keyword", "constructor");
@@ -156,7 +203,7 @@ subroutineType:
     }
 ;
 
-/* middle node */
+// for 서브루틴 반환 타입
 returnType:
     VOID {
         $$ = create_node("keyword", "void");
@@ -166,6 +213,7 @@ returnType:
     }
 ;
 
+// 매개변수 리스트
 parameterList:
     /* Empty */ {
         $$ = create_node("parameterList", NULL);
@@ -183,6 +231,7 @@ parameterList:
     }
 ;
 
+// 서브루틴 구현
 subroutineBody:
     LBRACE varDecList statements RBRACE {
         $$ = create_node("subroutineBody", NULL);
@@ -193,7 +242,7 @@ subroutineBody:
     }
 ;
 
-/* middle node */
+// for varDec*
 varDecList:
     /* Empty */ {
         $$ = create_node("varDecList", NULL);
@@ -204,6 +253,7 @@ varDecList:
     }
 ;
 
+// 변수 선언
 varDec:
     VAR varNameList SEMICOLON {
         $$ = create_node("varDec", NULL);
@@ -213,7 +263,7 @@ varDec:
     }
 ;
 
-/* middle node */
+// for varName (',' varName)*
 varNameList:
     varName {
         $$ = create_node("varNameList", NULL);
@@ -226,31 +276,35 @@ varNameList:
     }
 ;
 
+// 클래스 이름
 className:
     IDENTIFIER {
         $$ = create_node("identifier", $1);
     }
 ;
 
+// 서브루틴 이름
 subroutineName:
     IDENTIFIER {
         $$ = create_node("identifier", $1);
     }
 ;
 
+// 변수 이름
 varName:
     IDENTIFIER {
         $$ = create_node("identifier", $1);
     }
 ;
 
+// 진술문(Statements)
 statements:
     statementList {
         $$ = $1;
     }
 ;
 
-/* middle node */
+// for statement*
 statementList:
     /* Empty */ {
         $$ = create_node("statements", NULL);
@@ -261,6 +315,7 @@ statementList:
     }
 ;
 
+// 단일 진술문
 statement:
     letStatement {
         $$ = $1;
@@ -279,6 +334,7 @@ statement:
     }
 ;
 
+// let 문
 letStatement:
     LET varName EQ expression SEMICOLON {
         $$ = create_node("letStatement", NULL);
@@ -288,6 +344,7 @@ letStatement:
         add_child($$, $4);
         add_child($$, create_node("symbol", ";"));
     }
+    // ([인덱스])?
     | LET varName LBRACKET expression RBRACKET EQ expression SEMICOLON {
         $$ = create_node("letStatement", NULL);
         add_child($$, create_node("keyword", "let"));
@@ -301,6 +358,7 @@ letStatement:
     }
 ;
 
+// if 문
 ifStatement:
     IF LPAREN expression RPAREN LBRACE statements RBRACE {
         $$ = create_node("ifStatement", NULL);
@@ -328,6 +386,7 @@ ifStatement:
     }
 ;
 
+// while 문
 whileStatement:
     WHILE LPAREN expression RPAREN LBRACE statements RBRACE {
         $$ = create_node("whileStatement", NULL);
@@ -341,6 +400,7 @@ whileStatement:
     }
 ;
 
+// do 문
 doStatement:
     DO subroutineCall SEMICOLON {
         $$ = create_node("doStatement", NULL);
@@ -350,6 +410,7 @@ doStatement:
     }
 ;
 
+// return 문
 returnStatement:
     RETURN SEMICOLON {
         $$ = create_node("returnStatement", NULL);
@@ -364,6 +425,7 @@ returnStatement:
     }
 ;
 
+// 표현식 테스트를 위한 구문
 expressions:
     expression {
         $$ = create_node("expressions", NULL);
@@ -375,6 +437,7 @@ expressions:
     }
 ;
 
+// 표현식 (term (op term)*)
 expression:
     term {
         $$ = create_node("expression", NULL);
@@ -387,23 +450,29 @@ expression:
     }
 ;
 
+// 상수/변수 참조
 term:
+    // 정수 상수 참조
     INTEGER_CONSTANT {
         $$ = create_node("term", NULL);
         add_child($$, create_node("integerConstant", $1));
     }
+    // 문자열 상수 참조
     | STRING_CONSTANT {
         $$ = create_node("term", NULL);
         add_child($$, create_node("stringConstant", $1));
     }
+    // 키워드 상수 참조
     | keywordConstant {
         $$ = create_node("term", NULL);
         add_child($$, $1);
     }
+    // 변수 참조
     | varName {
         $$ = create_node("term", NULL);
         add_child($$, $1);
     }
+    // 변수[인덱스] 참조
     | varName LBRACKET expression RBRACKET {
         $$ = create_node("term", NULL);
         add_child($$, $1);
@@ -411,16 +480,19 @@ term:
         add_child($$, $3);
         add_child($$, create_node("symbol", "]"));
     }
+    // 서브루틴 호출
     | subroutineCall {
         $$ = create_node("term", NULL);
         take_children($$, $1);
     }
+    // (표현식) 참조
     | LPAREN expression RPAREN {
         $$ = create_node("term", NULL);
         add_child($$, create_node("symbol", "("));
         add_child($$, $2);
         add_child($$, create_node("symbol", ")"));
     }
+    // 단항 연산 참조
     | unaryOp term {
         $$ = create_node("term", NULL);
         add_child($$, $1);
@@ -428,7 +500,9 @@ term:
     }
 ;
 
+// 서브루틴 호출
 subroutineCall:
+    // 클래스내 서브루틴 호출
     subroutineName LPAREN expressionList RPAREN {
         $$ = create_node("subroutineCall", NULL);
         add_child($$, $1);
@@ -436,6 +510,7 @@ subroutineCall:
         add_child($$, $3);
         add_child($$, create_node("symbol", ")"));
     }
+    // 정적 서브루틴 호출
     | className DOT subroutineName LPAREN expressionList RPAREN {
         $$ = create_node("subroutineCall", NULL);
         add_child($$, $1);
@@ -445,6 +520,7 @@ subroutineCall:
         add_child($$, $5);
         add_child($$, create_node("symbol", ")"));
     }
+    // 필드 서브루틴 호출
     | varName DOT subroutineName LPAREN expressionList RPAREN {
         $$ = create_node("subroutineCall", NULL);
         add_child($$, $1);
@@ -456,6 +532,7 @@ subroutineCall:
     }
 ;
 
+// 표현식 리스트 (expression, (',' expression)*)?
 expressionList:
     /* Empty */ {
         $$ = create_node("expressionList", NULL);
@@ -471,6 +548,7 @@ expressionList:
     }
 ;
 
+// 산술/논리연산
 op:
     PLUS {
         $$ = create_node("symbol", "+");       
@@ -501,6 +579,7 @@ op:
     }
 ;
 
+// 단항연산
 unaryOp:
     MINUS {
         $$ = create_node("symbol", "-");
@@ -510,6 +589,7 @@ unaryOp:
     }
 ;
 
+// 키워드 상수
 keywordConstant:
     TRUE {
         $$ = create_node("keyword", "true");
@@ -526,6 +606,7 @@ keywordConstant:
 ;
 
 %%
+// 노드 생성 구현
 TreeNode* create_node(const char *tag, const char *value) {
     TreeNode *node = (TreeNode *)malloc(sizeof(TreeNode));
     node->tag = strdup(tag);
@@ -535,11 +616,13 @@ TreeNode* create_node(const char *tag, const char *value) {
     return node;
 }
 
+// 자식 노드 추가 구현
 void add_child(TreeNode *parent, TreeNode *child) {
     parent->children = realloc(parent->children, sizeof(TreeNode *) * (parent->child_count + 1));
     parent->children[parent->child_count++] = child;
 }
 
+// 트리 출력 구현
 void print_tree(TreeNode *node, int depth) {
     for (int i = 0; i < depth; i++) printf("  ");
     printf("<%s>", node->tag);
@@ -556,6 +639,7 @@ void print_tree(TreeNode *node, int depth) {
     }  
 }
 
+// 트리 메모리 해제 구현
 void free_tree(TreeNode *node) {
     if (!node) return;
     free(node->tag);
@@ -567,6 +651,7 @@ void free_tree(TreeNode *node) {
     free(node);
 }
 
+// 트리 노드 메모리 해제 구현
 void free_node(TreeNode *node) {
     if (!node) return;
     free(node->tag);
@@ -575,6 +660,7 @@ void free_node(TreeNode *node) {
     free(node);
 }
 
+// 자식 노드 흡수 구현
 void take_children(TreeNode *master, TreeNode *slave) {
     if (!master) return;
     if (!slave) return;
@@ -583,10 +669,12 @@ void take_children(TreeNode *master, TreeNode *slave) {
     free_node(slave);
 }
 
+// 디버깅
 void yyerror(const char *s) {
     fprintf(stderr, "Error: %s at line %d\n", s, yylineno);
 }
 
+// 진입점
 int main(int argc, char **argv) {
     if (yyparse() != 0) printf("Parsing failed!\n");
     return 0;

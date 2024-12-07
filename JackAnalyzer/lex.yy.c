@@ -365,21 +365,21 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[135] =
     {   0,
-        0,    0,   49,   47,   46,   46,   47,   35,   24,   25,
-       33,   31,   29,   32,   28,   34,   41,   30,   37,   39,
-       38,   43,   26,   27,   43,   43,   43,   43,   43,   43,
-       43,   43,   43,   43,   43,   43,   43,   43,   22,   36,
-       23,   40,   46,    0,   42,    0,   45,   41,   43,   43,
-       43,   43,   43,   17,   43,   43,   43,   43,   18,   43,
-       43,   43,   43,   43,   43,   43,   43,   43,   43,   43,
-        0,    0,   45,   43,   43,   43,   43,   43,   43,   43,
-       43,    8,   16,   43,   43,   43,   43,   43,   43,    7,
-       43,   43,   44,   43,    9,   43,   43,   19,   43,   43,
+        0,    0,   49,   47,   43,   43,   47,   35,   24,   25,
+       33,   31,   29,   32,   28,   34,   44,   30,   37,   39,
+       38,   46,   26,   27,   46,   46,   46,   46,   46,   46,
+       46,   46,   46,   46,   46,   46,   46,   46,   22,   36,
+       23,   40,   43,    0,   45,    0,   42,   44,   46,   46,
+       46,   46,   46,   17,   46,   46,   46,   46,   18,   46,
+       46,   46,   46,   46,   46,   46,   46,   46,   46,   46,
+        0,    0,   42,   46,   46,   46,   46,   46,   46,   46,
+       46,    8,   16,   46,   46,   46,   46,   46,   46,    7,
+       46,   46,   41,   46,    9,   46,   46,   19,   46,   46,
 
-       43,   43,   14,   43,   43,   15,   12,   11,   43,   43,
-        1,   43,   13,    5,   43,   43,   43,   43,   20,   43,
-       43,   43,    4,   21,    6,   10,   43,   43,   43,    3,
-       43,   43,    2,    0
+       46,   46,   14,   46,   46,   15,   12,   11,   46,   46,
+        1,   46,   13,    5,   46,   46,   46,   46,   20,   46,
+       46,   46,    4,   21,    6,   10,   46,   46,   46,    3,
+       46,   46,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -813,7 +813,7 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 11 "lexer.l"
-{ return CLASS; }
+{ return CLASS; } // 클래스/서브루틴: class, constructor, function, method
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
@@ -832,190 +832,207 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 15 "lexer.l"
-{ return FIELD; }
+#line 16 "lexer.l"
+{ return FIELD; } // 변수 선언: field, static, var
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 16 "lexer.l"
+#line 17 "lexer.l"
 { return STATIC; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 17 "lexer.l"
+#line 18 "lexer.l"
 { return VAR; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 18 "lexer.l"
-{ return INT; }
+#line 20 "lexer.l"
+{ return INT; } // 자료형: int, char, boolean, void
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 19 "lexer.l"
+#line 21 "lexer.l"
 { return CHAR; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 20 "lexer.l"
+#line 22 "lexer.l"
 { return BOOLEAN; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 21 "lexer.l"
+#line 23 "lexer.l"
 { return VOID; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 22 "lexer.l"
-{ return TRUE; }
+#line 25 "lexer.l"
+{ return TRUE; } // 상수: true, false, null, this
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 23 "lexer.l"
+#line 26 "lexer.l"
 { return FALSE; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 24 "lexer.l"
+#line 27 "lexer.l"
 { return TK_NULL; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 25 "lexer.l"
+#line 28 "lexer.l"
 { return THIS; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 26 "lexer.l"
-{ return LET; }
+#line 30 "lexer.l"
+{ return LET; } // 진술문: let, do, if, else, while, return
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 27 "lexer.l"
+#line 31 "lexer.l"
 { return DO; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 28 "lexer.l"
+#line 32 "lexer.l"
 { return IF; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 29 "lexer.l"
+#line 33 "lexer.l"
 { return ELSE; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 30 "lexer.l"
+#line 34 "lexer.l"
 { return WHILE; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 31 "lexer.l"
+#line 35 "lexer.l"
 { return RETURN; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 33 "lexer.l"
-{ return LBRACE; }
+#line 37 "lexer.l"
+{ return LBRACE; } // 구분자: ‘{’, ‘}’, ‘(’, ‘)’, ‘[’, ‘]’, ‘.’, ‘,’, ‘;’
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 34 "lexer.l"
+#line 38 "lexer.l"
 { return RBRACE; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 35 "lexer.l"
+#line 39 "lexer.l"
 { return LPAREN; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 36 "lexer.l"
+#line 40 "lexer.l"
 { return RPAREN; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 37 "lexer.l"
+#line 41 "lexer.l"
 { return LBRACKET; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 38 "lexer.l"
+#line 42 "lexer.l"
 { return RBRACKET; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 39 "lexer.l"
+#line 43 "lexer.l"
 { return DOT; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 40 "lexer.l"
+#line 44 "lexer.l"
 { return COMMA; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 41 "lexer.l"
+#line 45 "lexer.l"
 { return SEMICOLON; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 42 "lexer.l"
-{ return PLUS; }
+#line 47 "lexer.l"
+{ return PLUS; } // 연산자: ‘+’, ‘-’, ‘*’, ‘/’, ‘&’, ‘|’, ‘<’, ‘>’, ‘=’, ‘~’
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 43 "lexer.l"
+#line 48 "lexer.l"
 { return MINUS; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 44 "lexer.l"
+#line 49 "lexer.l"
 { return MULTIPLY; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 45 "lexer.l"
+#line 50 "lexer.l"
 { return DIVIDE; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 46 "lexer.l"
+#line 51 "lexer.l"
 { return AND; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 47 "lexer.l"
+#line 52 "lexer.l"
 { return OR; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 48 "lexer.l"
+#line 53 "lexer.l"
 { return LT; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 49 "lexer.l"
+#line 54 "lexer.l"
 { return GT; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 50 "lexer.l"
+#line 55 "lexer.l"
 { return EQ; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 51 "lexer.l"
+#line 56 "lexer.l"
 { return NOT; }
 	YY_BREAK
 case 41:
+/* rule 41 can match eol */
 YY_RULE_SETUP
-#line 52 "lexer.l"
-{ 
-                    int value = atoi(yytext);
-                    if (value >= 0 && value <= 32767) {
+#line 58 "lexer.l"
+{} // 블록 주석 무시
+	YY_BREAK
+case 42:
+YY_RULE_SETUP
+#line 59 "lexer.l"
+{} // 한 줄 주석 무시
+	YY_BREAK
+case 43:
+/* rule 43 can match eol */
+YY_RULE_SETUP
+#line 60 "lexer.l"
+{} // 공백 무시
+	YY_BREAK
+case 44:
+YY_RULE_SETUP
+#line 62 "lexer.l"
+{ // 정수: 0 ~ 32767 범위의 값 
+                    int value = atoi(yytext); // 정수로 변환
+                    if (value >= 0 && value <= 32767) { // 범위 체크
                         yylval.sval = strdup(yytext);
                         return INTEGER_CONSTANT;
                     } else {
@@ -1024,45 +1041,28 @@ YY_RULE_SETUP
                     }
                 }
 	YY_BREAK
-case 42:
-/* rule 42 can match eol */
+case 45:
+/* rule 45 can match eol */
 YY_RULE_SETUP
-#line 63 "lexer.l"
-{ 
-                    yylval.sval = strdup(yytext);
-                    yylval.sval[strlen(yylval.sval) - 1] = '\0';
-                    yylval.sval = yylval.sval + 1;
+#line 73 "lexer.l"
+{ // 문자열: 큰 따옴표(“”)로 둘러싸인 문자열
+                    yylval.sval = strdup(yytext); // 따옴표 제거
+                    yylval.sval[strlen(yylval.sval) - 1] = '\0'; // 따옴표 제거
+                    yylval.sval = yylval.sval + 1; // 따옴표 제거
                     return STRING_CONSTANT; 
                 }
 	YY_BREAK
-case 43:
+case 46:
 YY_RULE_SETUP
-#line 70 "lexer.l"
+#line 80 "lexer.l"
 {
                             yylval.sval = strdup(yytext);
                             return IDENTIFIER;
                         }
 	YY_BREAK
-case 44:
-/* rule 44 can match eol */
-YY_RULE_SETUP
-#line 75 "lexer.l"
-{}
-	YY_BREAK
-case 45:
-YY_RULE_SETUP
-#line 76 "lexer.l"
-{}
-	YY_BREAK
-case 46:
-/* rule 46 can match eol */
-YY_RULE_SETUP
-#line 77 "lexer.l"
-{}
-	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 79 "lexer.l"
+#line 85 "lexer.l"
 {
                     printf("Error: Integer out of range: %s\n", yytext);
                     exit(1);
@@ -1070,7 +1070,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 84 "lexer.l"
+#line 90 "lexer.l"
 ECHO;
 	YY_BREAK
 #line 1077 "lex.yy.c"
@@ -2078,6 +2078,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 84 "lexer.l"
+#line 90 "lexer.l"
 
 

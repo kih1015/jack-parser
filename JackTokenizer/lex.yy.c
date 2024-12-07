@@ -365,21 +365,21 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[135] =
     {   0,
-        0,    0,   49,   47,   46,   46,   47,   35,   24,   25,
-       33,   31,   29,   32,   28,   34,   41,   30,   37,   39,
-       38,   43,   26,   27,   43,   43,   43,   43,   43,   43,
-       43,   43,   43,   43,   43,   43,   43,   43,   22,   36,
-       23,   40,   46,    0,   42,    0,   45,   41,   43,   43,
-       43,   43,   43,   17,   43,   43,   43,   43,   18,   43,
-       43,   43,   43,   43,   43,   43,   43,   43,   43,   43,
-        0,    0,   45,   43,   43,   43,   43,   43,   43,   43,
-       43,    8,   16,   43,   43,   43,   43,   43,   43,    7,
-       43,   43,   44,   43,    9,   43,   43,   19,   43,   43,
+        0,    0,   49,   47,   43,   43,   47,   35,   24,   25,
+       33,   31,   29,   32,   28,   34,   44,   30,   37,   39,
+       38,   46,   26,   27,   46,   46,   46,   46,   46,   46,
+       46,   46,   46,   46,   46,   46,   46,   46,   22,   36,
+       23,   40,   43,    0,   45,    0,   42,   44,   46,   46,
+       46,   46,   46,   17,   46,   46,   46,   46,   18,   46,
+       46,   46,   46,   46,   46,   46,   46,   46,   46,   46,
+        0,    0,   42,   46,   46,   46,   46,   46,   46,   46,
+       46,    8,   16,   46,   46,   46,   46,   46,   46,    7,
+       46,   46,   41,   46,    9,   46,   46,   19,   46,   46,
 
-       43,   43,   14,   43,   43,   15,   12,   11,   43,   43,
-        1,   43,   13,    5,   43,   43,   43,   43,   20,   43,
-       43,   43,    4,   21,    6,   10,   43,   43,   43,    3,
-       43,   43,    2,    0
+       46,   46,   14,   46,   46,   15,   12,   11,   46,   46,
+        1,   46,   13,    5,   46,   46,   46,   46,   20,   46,
+       46,   46,    4,   21,    6,   10,   46,   46,   46,    3,
+       46,   46,    2,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -812,17 +812,17 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 10 "JackTokenizer.l"
-{ printf("<keyword> class </keyword>\n");}
+{ printf("<keyword> class </keyword>\n"); } // 클래스/서브루틴: class, constructor, function, method
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 11 "JackTokenizer.l"
-{ printf("<keyword> constructor </keyword>\n");}
+{ printf("<keyword> constructor </keyword>\n"); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 12 "JackTokenizer.l"
-{ printf("<keyword> function </keyword>\n");}
+{ printf("<keyword> function </keyword>\n"); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
@@ -831,249 +831,247 @@ YY_RULE_SETUP
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 14 "JackTokenizer.l"
-{ printf("<keyword> field </keyword>\n"); }
+#line 15 "JackTokenizer.l"
+{ printf("<keyword> field </keyword>\n"); } // 변수 선언: field, static, var
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 15 "JackTokenizer.l"
-{ printf("<keyword> static </keyword>\n");  }
+#line 16 "JackTokenizer.l"
+{ printf("<keyword> static </keyword>\n"); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 16 "JackTokenizer.l"
-{ printf("<keyword> var </keyword>\n");}
+#line 17 "JackTokenizer.l"
+{ printf("<keyword> var </keyword>\n"); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 17 "JackTokenizer.l"
-{ printf("<keyword> int </keyword>\n");  }
+#line 19 "JackTokenizer.l"
+{ printf("<keyword> int </keyword>\n"); } // 자료형: int, char, boolean, void
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 18 "JackTokenizer.l"
-{ printf("<keyword> char </keyword>\n");  }
+#line 20 "JackTokenizer.l"
+{ printf("<keyword> char </keyword>\n"); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 19 "JackTokenizer.l"
-{ printf("<keyword> boolean </keyword>\n");  }
+#line 21 "JackTokenizer.l"
+{ printf("<keyword> boolean </keyword>\n"); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 20 "JackTokenizer.l"
-{ printf("<keyword> void </keyword>\n");  }
+#line 22 "JackTokenizer.l"
+{ printf("<keyword> void </keyword>\n"); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 21 "JackTokenizer.l"
-{ printf("<keyword> true </keyword>\n"); }
+#line 24 "JackTokenizer.l"
+{ printf("<keyword> true </keyword>\n"); } // 상수: true, false, null, this
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 22 "JackTokenizer.l"
-{ printf("<keyword> false </keyword>\n");  }
+#line 25 "JackTokenizer.l"
+{ printf("<keyword> false </keyword>\n"); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 23 "JackTokenizer.l"
+#line 26 "JackTokenizer.l"
 { printf("<keyword> null </keyword>\n"); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 24 "JackTokenizer.l"
-{ printf("<keyword> this </keyword>\n");  }
+#line 27 "JackTokenizer.l"
+{ printf("<keyword> this </keyword>\n"); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 25 "JackTokenizer.l"
-{ printf("<keyword> let </keyword>\n");  }
+#line 29 "JackTokenizer.l"
+{ printf("<keyword> let </keyword>\n"); } // 진술문: let, do, if, else, while, return
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 26 "JackTokenizer.l"
+#line 30 "JackTokenizer.l"
 { printf("<keyword> do </keyword>\n"); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 27 "JackTokenizer.l"
-{ printf("<keyword> if </keyword>\n");  }
+#line 31 "JackTokenizer.l"
+{ printf("<keyword> if </keyword>\n"); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 28 "JackTokenizer.l"
-{ printf("<keyword> else </keyword>\n");  }
+#line 32 "JackTokenizer.l"
+{ printf("<keyword> else </keyword>\n"); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 29 "JackTokenizer.l"
-{ printf("<keyword> while </keyword>\n");  }
+#line 33 "JackTokenizer.l"
+{ printf("<keyword> while </keyword>\n"); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 30 "JackTokenizer.l"
+#line 34 "JackTokenizer.l"
 { printf("<keyword> return </keyword>\n"); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 32 "JackTokenizer.l"
-{ printf("<symbol> { </symbol>\n");  }
+#line 36 "JackTokenizer.l"
+{ printf("<symbol> { </symbol>\n"); } // 구분자: ‘{’, ‘}’, ‘(’, ‘)’, ‘[’, ‘]’, ‘.’, ‘,’, ‘;’
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 33 "JackTokenizer.l"
-{ printf("<symbol> } </symbol>\n");  }
+#line 37 "JackTokenizer.l"
+{ printf("<symbol> } </symbol>\n"); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 34 "JackTokenizer.l"
-{ printf("<symbol> ( </symbol>\n");  }
+#line 38 "JackTokenizer.l"
+{ printf("<symbol> ( </symbol>\n"); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 35 "JackTokenizer.l"
-{ printf("<symbol> ) </symbol>\n");  }
+#line 39 "JackTokenizer.l"
+{ printf("<symbol> ) </symbol>\n"); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 36 "JackTokenizer.l"
+#line 40 "JackTokenizer.l"
 { printf("<symbol> [ </symbol>\n"); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 37 "JackTokenizer.l"
-{ printf("<symbol> ] </symbol>\n");  }
+#line 41 "JackTokenizer.l"
+{ printf("<symbol> ] </symbol>\n"); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 38 "JackTokenizer.l"
-{ printf("<symbol> . </symbol>\n");  }
+#line 42 "JackTokenizer.l"
+{ printf("<symbol> . </symbol>\n"); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 39 "JackTokenizer.l"
-{ printf("<symbol> , </symbol>\n");  }
+#line 43 "JackTokenizer.l"
+{ printf("<symbol> , </symbol>\n"); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 40 "JackTokenizer.l"
-{ printf("<symbol> ; </symbol>\n");  }
+#line 44 "JackTokenizer.l"
+{ printf("<symbol> ; </symbol>\n"); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 41 "JackTokenizer.l"
-{ printf("<symbol> + </symbol>\n");  }
+#line 46 "JackTokenizer.l"
+{ printf("<symbol> + </symbol>\n"); } // 연산자: ‘+’, ‘-’, ‘*’, ‘/’, ‘&’, ‘|’, ‘<’, ‘>’, ‘=’, ‘~’
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 42 "JackTokenizer.l"
-{ printf("<symbol> - </symbol>\n");  }
+#line 47 "JackTokenizer.l"
+{ printf("<symbol> - </symbol>\n"); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 43 "JackTokenizer.l"
-{ printf("<symbol> * </symbol>\n");  }
+#line 48 "JackTokenizer.l"
+{ printf("<symbol> * </symbol>\n"); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 44 "JackTokenizer.l"
-{ printf("<symbol> / </symbol>\n");  }
+#line 49 "JackTokenizer.l"
+{ printf("<symbol> / </symbol>\n"); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 45 "JackTokenizer.l"
-{ printf("<symbol> &amp; </symbol>\n");  }
+#line 50 "JackTokenizer.l"
+{ printf("<symbol> &amp; </symbol>\n");} // &amp; 로 출력
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 46 "JackTokenizer.l"
-{ printf("<symbol> | </symbol>\n");  }
+#line 51 "JackTokenizer.l"
+{ printf("<symbol> | </symbol>\n"); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 47 "JackTokenizer.l"
-{ printf("<symbol> &lt; </symbol>\n");  }
+#line 52 "JackTokenizer.l"
+{ printf("<symbol> &lt; </symbol>\n"); } // &lt; 로 출력
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 48 "JackTokenizer.l"
-{ printf("<symbol> &gt; </symbol>\n");  }
+#line 53 "JackTokenizer.l"
+{ printf("<symbol> &gt; </symbol>\n"); } // &gt; 로 출력
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 49 "JackTokenizer.l"
-{ printf("<symbol> = </symbol>\n");  }
+#line 54 "JackTokenizer.l"
+{ printf("<symbol> = </symbol>\n"); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 50 "JackTokenizer.l"
-{ printf("<symbol> ~ </symbol>\n");  }
+#line 55 "JackTokenizer.l"
+{ printf("<symbol> ~ </symbol>\n"); }
 	YY_BREAK
 case 41:
+/* rule 41 can match eol */
 YY_RULE_SETUP
-#line 52 "JackTokenizer.l"
-{ 
-                    int value = atoi(yytext);
-                    if (value >= 0 && value <= 32767) {
+#line 57 "JackTokenizer.l"
+{} // 블록 주석 무시
+	YY_BREAK
+case 42:
+YY_RULE_SETUP
+#line 58 "JackTokenizer.l"
+{} // 한 줄 주석 무시
+	YY_BREAK
+case 43:
+/* rule 43 can match eol */
+YY_RULE_SETUP
+#line 59 "JackTokenizer.l"
+{} // 공백 무시
+	YY_BREAK
+case 44:
+YY_RULE_SETUP
+#line 61 "JackTokenizer.l"
+{ // 정수: 0 ~ 32767 범위의 값 
+                    int value = atoi(yytext); // 정수로 변환
+                    if (value >= 0 && value <= 32767) { // 범위 체크
                         printf("<integerConstant> %d </integerConstant>\n", value);
-                        //yylval.sval = strdup(yytext);
                     } else {
                         printf("Error: Integer out of range: %s\n", yytext);
                         exit(1);
                     }
                 }
 	YY_BREAK
-case 42:
-/* rule 42 can match eol */
-YY_RULE_SETUP
-#line 63 "JackTokenizer.l"
-{ 
-                    char *buf = (char *)malloc(strlen(yytext) - 1); // 따옴표 제거
-                    strncpy(buf, yytext + 1, strlen(yytext) - 2);
-                    buf[strlen(yytext) - 2] = '\0';
-                    printf("<stringConstant> %s </stringConstant>\n", buf);
-                    //yylval.sval = buf;
-                }
-	YY_BREAK
-case 43:
+case 45:
+/* rule 45 can match eol */
 YY_RULE_SETUP
 #line 71 "JackTokenizer.l"
-{
+{ // 문자열: 큰 따옴표(“”)로 둘러싸인 문자열
+                    char *buf = (char *)malloc(strlen(yytext) - 1); // 따옴표 제거
+                    strncpy(buf, yytext + 1, strlen(yytext) - 2); // 따옴표 제거
+                    buf[strlen(yytext) - 2] = '\0'; // 따옴표 제거
+                    printf("<stringConstant> %s </stringConstant>\n", buf);
+                }
+	YY_BREAK
+case 46:
+YY_RULE_SETUP
+#line 78 "JackTokenizer.l"
+{ // 식별자: 문자/언더스코어(‘_’)로 시작, 숫자로 시작하면 안됨
                             printf("<identifier> %s </identifier>\n", yytext);
                             //yylval.sval = strdup(yytext);
                         }
 	YY_BREAK
-case 44:
-/* rule 44 can match eol */
-YY_RULE_SETUP
-#line 76 "JackTokenizer.l"
-{}  // 주석 무시
-	YY_BREAK
-case 45:
-YY_RULE_SETUP
-#line 77 "JackTokenizer.l"
-{}  // 주석 무시
-	YY_BREAK
-case 46:
-/* rule 46 can match eol */
-YY_RULE_SETUP
-#line 78 "JackTokenizer.l"
-{}  // 공백 무시
-	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 80 "JackTokenizer.l"
-{
+#line 83 "JackTokenizer.l"
+{ // 이외의 문자
                     printf("Error: Unrecognized token: %s\n", yytext);
                     exit(1);
                 }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 85 "JackTokenizer.l"
+#line 88 "JackTokenizer.l"
 ECHO;
 	YY_BREAK
-#line 1077 "lex.yy.c"
+#line 1075 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2078,11 +2076,11 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 85 "JackTokenizer.l"
+#line 88 "JackTokenizer.l"
 
 
 int main() {
-    printf("<tokens>\n");
-    yylex();
+    printf("<tokens>\n"); // 토큰s 태그로 감싸기
+    yylex(); // lexer 실행
     printf("</tokens>\n");
 }
